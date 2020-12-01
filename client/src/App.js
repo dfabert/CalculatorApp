@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import NavTabs from './NavTabs';
+import Basic from './calculators/Basic';
+import Savings from './calculators/Savings';
 
 
 function App() {
@@ -7,10 +10,9 @@ function App() {
     <Router>
       <div>
         <NavTabs />
-        <Route exact path = '/' component={Login} />
+        <Route exact path = '/' component={Basic} />
         <Route exact path = '/basic' component={Basic} />
         <Route exact path = '/Financial/Savings' component={Savings} />
-        <Footer />
       </div>
     </Router>
   );
