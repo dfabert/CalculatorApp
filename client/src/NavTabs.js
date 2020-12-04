@@ -11,7 +11,7 @@ function NavTabs() {
   return (
 <>
   <Navbar sticky='top'>
-    <Navbar.Brand as={Link} to="/">OmniCalculator</Navbar.Brand>
+    <Navbar.Brand as={Link} to="/"><i class="fas fa-infinity"></i>OmniCalculator</Navbar.Brand>
     <Nav className="justify-content-center">
       <Nav.Link as={Link} to="/">Home</Nav.Link>
       <Nav.Link as={Link} to="/Basic">Basic</Nav.Link>
