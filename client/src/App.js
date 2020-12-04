@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavTabs from './NavTabs';
 import Basic from './calculators/Basic';
 import Savings from './calculators/Savings';
+import './app.scss';
 
 
 function App() {
