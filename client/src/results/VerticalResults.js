@@ -29,9 +29,9 @@ function Calculations() {
                             </ListItem>
                         ))}
                     </List>
-
+                ) : (
+                    <h3>No Calculations</h3>
                 )}
-
         </Container>
     )
 
