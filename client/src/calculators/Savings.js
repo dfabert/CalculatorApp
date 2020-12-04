@@ -1,4 +1,5 @@
 import React from "react";
+import './Savings.scss';
 
 function Savings() {
 
