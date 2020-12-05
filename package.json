@@ -1,7 +1,7 @@
 {
   "name": "calculator_application",
   "version": "1.0.0",
-  "description": "All of the calculators in one place!  ",
+  "description": "All of the calculators in one place!",
   "main": "server.js",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -38,7 +38,7 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
     "morgan": "^1.10.0",
-    "react-passport": "^1.1.0"
+    "react-passport": "^1.1.0",
     "node-sass": "^4.14.1"
   }
 }

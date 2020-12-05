@@ -1,3 +1,3 @@
 module.exports = {
-  Post: require("./post")
+  Calculation: require('./calculation')
 };

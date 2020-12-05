@@ -8,6 +8,6 @@ const calculationSchema = new Schema({
 });0
 
 
-const Calculation = mongoose.model("Calculation", CalculationSchema);
+const Calculation = mongoose.model("Calculation", calculationSchema);
 
 module.exports = Calculation;
