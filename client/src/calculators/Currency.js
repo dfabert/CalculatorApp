@@ -1,4 +1,4 @@
-import e from "express";
+
 import React, { useEffect, useState } from "react";
 import './Currency.scss';
 import CurrencySelect from './CurrencySelect';
@@ -45,12 +45,12 @@ function Currency() {
         }
     }, [startCurrency, resultCurrency])
 
-    function handleStartAmountChange() {
+    function handleStartAmountChange(e) {
         setAmount(e.target.value)
         setAmountInStartCurrency(true)
     }
 
-    function handleResultAmountChange() {
+    function handleResultAmountChange(e) {
         setAmount(e.target.value)
         setAmountInStartCurrency(false)
     }
@@ -61,7 +61,7 @@ function Currency() {
         <CurrencySelect 
             currencyOptions={currencyOptions}
             selectedCurrency={startCurrency}
-            onChangeCurrency={e => setStartCurrency(e.target.value)}
+            //onChangeCurrency={e => setStartCurrency(e.target.value)}
             onChangeAmount={handleStartAmountChange}
             amount={startAmount}
         />
@@ -69,7 +69,7 @@ function Currency() {
         <CurrencySelect 
             currencyOptions={currencyOptions}
             selectedCurrency={resultCurrency}
-            onChangeCurrency={e => setResultCurrency(e.target.value)}
+            //onChangeCurrency={e => setResultCurrency(e.target.value)}
             onChangeAmount={handleResultAmountChange}
             amount={resultAmount}
         />
