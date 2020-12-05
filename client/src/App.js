@@ -4,6 +4,7 @@ import NavTabs from './NavTabs';
 import Signup from "./calculators/sign-up";
 import Basic from './calculators/Basic';
 import Savings from './calculators/Savings';
+import Currency from './calculators/Currency';
 import './app.scss';
 
 
@@ -15,6 +16,7 @@ function App() {
         <Route exact path = '/' component={Basic} />
         <Route exact path = '/basic' component={Basic} />
         <Route exact path = '/Financial/Savings' component={Savings} />
+        <Route exact path = '/Currency' component={Currency} />
       </div>
     </Router>
   );

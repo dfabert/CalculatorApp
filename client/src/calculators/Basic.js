@@ -1,4 +1,5 @@
 import React from "react";
+import './Basic.scss';
 
 function Basic() {
 
