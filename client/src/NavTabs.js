@@ -20,6 +20,7 @@ function NavTabs() {
         <NavDropdown.Divider />
         <NavDropdown.Item href="#action/3.1" as={Link} to="/Financial/Savings">Savings</NavDropdown.Item>
       </NavDropdown>
+      <Nav.Link as={Link} to="/Currency">Currency</Nav.Link>
     </Nav>
   </Navbar>
 </>
