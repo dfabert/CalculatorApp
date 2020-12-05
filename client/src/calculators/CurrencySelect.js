@@ -10,13 +10,13 @@ export default function CurrencySelect(props) {
     } = props
 
     return (
-        <div>
-            <input type='number' className='input' value={amount} onChange={onChangeAmount} />
-            <select value={selectedCurrency} onChange={onChangeCurrency}>
-                {currencyOptions.map(option => (
-                    <option key={option} value={option}>{option}</option>
-                ))}
-            </select>
-        </div>
+            <div className='container'>
+                <input type='number' className='input' value={amount} onChange={onChangeAmount} />
+                <select value={selectedCurrency} onChange={onChangeCurrency}>
+                    {currencyOptions.map(option => (
+                        <option key={option} value={option}>{option}</option>
+                    ))}
+                </select>
+            </div>
     )
 }

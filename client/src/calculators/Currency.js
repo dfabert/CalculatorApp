@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import './Currency.scss';
 import CurrencySelect from './CurrencySelect';
@@ -7,12 +6,12 @@ const BASE_URL = 'https://api.exchangeratesapi.io/latest'
 
 function Currency() {
     
-    const[currencyOptions, setCurrencyOptions] = useState([])
-    const[startCurrency, setStartCurrency] = useState()
-    const[resultCurrency, setResultCurrency] = useState()
-    const [exchangeRate, setExchangeRate] = useState()
-    const [amount, setAmount] = useState(1)
-    const [amountInStartCurrency, setAmountInStartCurrency] = useState(true)
+    const[currencyOptions, setCurrencyOptions] = useState([]);
+    const[startCurrency, setStartCurrency] = useState();
+    const[resultCurrency, setResultCurrency] = useState();
+    const [exchangeRate, setExchangeRate] = useState();
+    const [amount, setAmount] = useState(1);
+    const [amountInStartCurrency, setAmountInStartCurrency] = useState(true);
     
 
     let resultAmount, startAmount
@@ -61,7 +60,7 @@ function Currency() {
         <CurrencySelect 
             currencyOptions={currencyOptions}
             selectedCurrency={startCurrency}
-            //onChangeCurrency={e => setStartCurrency(e.target.value)}
+            onChangeCurrency={e => setStartCurrency(e.target.value)}
             onChangeAmount={handleStartAmountChange}
             amount={startAmount}
         />
@@ -69,7 +68,7 @@ function Currency() {
         <CurrencySelect 
             currencyOptions={currencyOptions}
             selectedCurrency={resultCurrency}
-            //onChangeCurrency={e => setResultCurrency(e.target.value)}
+            onChangeCurrency={e => setResultCurrency(e.target.value)}
             onChangeAmount={handleResultAmountChange}
             amount={resultAmount}
         />
