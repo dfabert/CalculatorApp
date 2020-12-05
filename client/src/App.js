@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import NavTabs from './NavTabs';
+import Signup from "./calculators/sign-up";
 import Basic from './calculators/Basic';
 import Savings from './calculators/Savings';
 import './app.scss';
