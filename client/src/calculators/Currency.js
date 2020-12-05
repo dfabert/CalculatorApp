@@ -1,3 +1,4 @@
+import e from "express";
 import React, { useEffect, useState } from "react";
 import './Currency.scss';
 import CurrencySelect from './CurrencySelect';
@@ -12,15 +13,16 @@ function Currency() {
     const [exchangeRate, setExchangeRate] = useState()
     const [amount, setAmount] = useState(1)
     const [amountInStartCurrency, setAmountInStartCurrency] = useState(true)
+    
 
-    let startAmount, resultAmount
+    let resultAmount, startAmount
     if (amountInStartCurrency) {
         startAmount = amount
         resultAmount = amount * exchangeRate
     }
     else {
-        startAmount = amount
-        resultAmount = amount / exchangeRate
+        resultAmount = amount
+        startAmount = amount / exchangeRate
     }
 
     useEffect(() => {
@@ -31,15 +33,15 @@ function Currency() {
                 setCurrencyOptions([data.base, ...Object.keys(data.rates)])
                 setStartCurrency(data.base)
                 setResultCurrency(firstCurrency)
-                serExchangeRate(data.rates[firstCurrency])
+                setExchangeRate(data.rates[firstCurrency])
             })
     }, [])
 
     useEffect(() => {
         if (startCurrency != null && resultCurrency != null) {
-            fetch('${BASE_URL}?base=${startCurrency}&symbols=${resultCurrency}')
+            fetch(`${BASE_URL}?base=${startCurrency}&symbols=${resultCurrency}`)
             .then(res => res.json())
-            .then(date => setExchangeRate(data.rates[startCurrency]))
+            .then(data => setExchangeRate(data.rates[resultCurrency]))
         }
     }, [startCurrency, resultCurrency])
 
@@ -50,7 +52,7 @@ function Currency() {
 
     function handleResultAmountChange() {
         setAmount(e.target.value)
-        setAmountInResultCurrency(false)
+        setAmountInStartCurrency(false)
     }
 
   return (
@@ -61,7 +63,6 @@ function Currency() {
             selectedCurrency={startCurrency}
             onChangeCurrency={e => setStartCurrency(e.target.value)}
             onChangeAmount={handleStartAmountChange}
-            onChangeAmount={handleResultAmountChange}
             amount={startAmount}
         />
         <div className='equals'>=</div>
@@ -69,6 +70,7 @@ function Currency() {
             currencyOptions={currencyOptions}
             selectedCurrency={resultCurrency}
             onChangeCurrency={e => setResultCurrency(e.target.value)}
+            onChangeAmount={handleResultAmountChange}
             amount={resultAmount}
         />
     </>
