@@ -10,7 +10,6 @@ export default {
   deleteCalculation: function(id) {
     return axios.delete("/api/calculations/" + id);
   },
-  // Saves a book to the database
   saveCalculation: function(calculationData) {
     return axios.post("/api/", calculationData);
   }

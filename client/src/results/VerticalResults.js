@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import API from "../utils/API";
+import { Container } from "../components/Grid";
+import { List, ListItem } from "../components/List";
 
-function Calculations() {
+function Results() {
      
-    const[calculations, setCalculation] = useState([])
-    const[formObject, setFormObject] = useState({})
+    const[calculations, setCalculations] = useState([])
 
     useEffect(() => {
         loadCalculations()
     }, [])
 
     function loadCalculations() {
+        console.log("----'Loading Calculations'-----");
         API.getCalculations()
             .then(res =>
                 setCalculations(res.data)    
@@ -30,11 +32,11 @@ function Calculations() {
                         ))}
                     </List>
                 ) : (
-                    <h3>No Calculations</h3>
+                    <h5>No Calculations</h5>
                 )}
         </Container>
     )
 
 }
 
-export default Calculations;
+export default Results;
