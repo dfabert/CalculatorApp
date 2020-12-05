@@ -1,4 +1,5 @@
 import axios from 'axios';
+import React, {component} from 'react';
 
 class SignupForm extends React.Component {
     handleSubmit(e) {
@@ -25,16 +26,17 @@ class SignupForm extends React.Component {
     }
 
     render() {
+        return (
         <form onSubmit={this.handleSubmit}>
             <label>
                 Username:
-                <input type="text" value={this.state.username} onChange={this.handleChange} />
+                <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
             </label>
             <label>
                 Password:
-                <input type="text" value={this.state.password} onchange={this.handleChange} />
+                <input type="text" name="password" value={this.state.password} onchange={this.handleChange} />
             </label>
             <input type="submit" value="Submit" />
-        </form>
+        </form>);
     }
 }
