@@ -1,7 +1,3 @@
 module.exports = {
-<<<<<<< HEAD
- 
-=======
-  
->>>>>>> main
+  Calculation: require('./calculation')
 };

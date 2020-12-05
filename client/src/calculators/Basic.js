@@ -1,4 +1,5 @@
 import React from "react";
+import Results from '../results/VerticalResults';
 import './Basic.scss';
 
 function Basic() {
@@ -6,6 +7,7 @@ function Basic() {
   return (
     <div>
       Basic Calculator
+      <Results />
     </div>
   );
 }
