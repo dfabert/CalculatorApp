@@ -1,7 +1,13 @@
 import axios from 'axios';
 import React, {component} from 'react';
 
-class SignupForm extends React.Component {
+export default class SignupForm extends React.Component {
+
+    state = {
+        username: "",
+        password: ""
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         
@@ -23,20 +29,28 @@ class SignupForm extends React.Component {
         }).catch(error => {
             console.log(`Signup server error: ${error}`)
         });
-    }
+    };
+
+    updateUsername(e) {
+        this.state.username = e.target.value; 
+    };
+
+    updatePassword(e) {
+        this.state.password = e.target.value;
+    };
 
     render() {
         return (
         <form onSubmit={this.handleSubmit}>
             <label>
                 Username:
-                <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                <input type="text" name="username" onchange={this.updateUsername} />
             </label>
             <label>
                 Password:
-                <input type="text" name="password" value={this.state.password} onchange={this.handleChange} />
+                <input type="password" name="password" onchange={this.updatePassword} />
             </label>
             <input type="submit" value="Submit" />
         </form>);
-    }
-}
+    };
+};

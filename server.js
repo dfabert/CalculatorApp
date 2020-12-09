@@ -1,7 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const path = require("path");
 const routes = require("./routes");
+const passportControl = require("./lib/passport-control")
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -13,6 +15,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+app.use(passportControl.initialize())
 // Add routes, both API and view
 app.use(routes);
 
