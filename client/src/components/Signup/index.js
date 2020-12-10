@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, {component} from 'react';
+import './index.scss';
 
 export default class SignupForm extends React.Component {
 
@@ -41,16 +42,16 @@ export default class SignupForm extends React.Component {
 
     render() {
         return (
-        <form onSubmit={this.handleSubmit}>
-            <label>
-                Username:
-                <input type="text" name="username" onchange={this.updateUsername} />
-            </label>
-            <label>
-                Password:
-                <input type="password" name="password" onchange={this.updatePassword} />
-            </label>
-            <input type="submit" value="Submit" />
-        </form>);
+        <body>
+            <div class='container'>
+            <form id='signup' onSubmit={this.handleSubmit}>
+                <h1>Sign Up for OmniCalculator</h1>
+                <input type="text" name="username" placeholder="OmniUsername" onchange={this.updateUsername} />
+                <input type="password" name="password" placeholder="Password" onchange={this.updatePassword} />
+                <br></br>
+                <input type="submit" value="Submit" />
+            </form>
+            </div>
+        </body>);
     };
 };

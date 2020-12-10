@@ -1,5 +1,4 @@
 import React from "react";
-import Results from '../results/VerticalResults';
 import './Home.scss';
 
 function Home() {
@@ -17,6 +16,22 @@ function Home() {
                     </div>
                     <div class="back">
                         <div class="definition">A basic calculator that will save your past calculations IF you are logged in.</div>
+                    </div>
+                </div>
+                <div class="notecard">
+                    <div class="front">
+                        <span class="word">Financial</span>
+                    </div>
+                    <div class="back">
+                        <div class="definition">A financial calculator to help you manage your investments and make inquiries.</div>
+                    </div>
+                </div>
+                <div class="notecard">
+                    <div class="front">
+                        <span class="word">Currency</span>
+                    </div>
+                    <div class="back">
+                        <div class="definition">A currency converter for international travel and making purchases abroad.</div>
                     </div>
                 </div>
             </div>
