@@ -1,14 +1,19 @@
-.container {
+.card {
+    margin: auto;
     justify-content: center;
     align-items: center;
-
+    max-width: 20vw;
+    text-align: center;
 }
 
 h1 {
     margin: 0;
     margin-bottom: .5rem;
+    color: black;
     text-align: center;
 }
+
+
 
 .input {
     border: 1px solid black;
@@ -22,9 +27,10 @@ h1 {
 }
 
 select {
-    margin-left: .5rem;
-
+    width: 10em;
+    font-size: larger;
 }
+
 
 .equals {
     font-weight: bold;

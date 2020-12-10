@@ -1,6 +1,7 @@
 import React from 'react';
+import './Currency.scss';
 
-export default function CurrencySelect(props) {
+function CurrencySelect(props) {
     const {
         currencyOptions,
         selectedCurrency,
@@ -10,7 +11,8 @@ export default function CurrencySelect(props) {
     } = props
 
     return (
-            <div className='container'>
+        <>
+            <div className='card'>
                 <input type='number' className='input' value={amount} onChange={onChangeAmount} />
                 <select value={selectedCurrency} onChange={onChangeCurrency}>
                     {currencyOptions.map(option => (
@@ -18,5 +20,7 @@ export default function CurrencySelect(props) {
                     ))}
                 </select>
             </div>
+        </>
     )
 }
+export default CurrencySelect;

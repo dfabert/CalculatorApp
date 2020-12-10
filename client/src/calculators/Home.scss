@@ -11,7 +11,7 @@ $font1: 'Montserrat', sans-serif;
 
 @mixin parallax-background($file) {
   background: url($file) no-repeat center center fixed;
-  opacity: 50%;
+  opacity: 80%;
   @include background-size(cover);
 }
 
@@ -39,6 +39,13 @@ $font1: 'Montserrat', sans-serif;
     -o-transform: $transformation;  
 }
 
+@mixin transition($time){
+    transition: $time;
+    -webkit-transition: $time;
+    -moz-transition: $time;
+    -o-transition: $time;
+}
+
 @mixin hover-color($color) {
     &:hover{
         color: $color;
@@ -53,6 +60,9 @@ body {
   color: #2e3738;
 }
 
+.title {
+    color: rgb(190, 238, 78);
+}
 
 #Welcome {
   height: $parallax-height;
@@ -115,46 +125,83 @@ p {
     background-color: black;
 }
 
-.notecard {
-    width: 300px;
-    height: 180px;
-    border: 1px solid black;
-    display: inline-block;
-    margin: 20px;
-    font-family: Roboto, sans-serif;
-    box-shadow: 1px 1px 2px 2px rgba(0,0,0,.2);
-    &:hover{
-        @include transform (rotatey(-180deg));  
-      }
-    @include transform-style(preserve-3d);
-
-    .front, .back {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        @include backface-visibility;
+#notecards {
+    margin : {
+        left: auto;
+        right: auto;
     }
+    display: inline;
 
-    .front {
-        z-index: 3;
-        font-size: 20px;
-      
-        .word {
-            display: block;
-            text-align: center;
-            position: relative;
-            top: 40%;
-            @include hover-color(rgb(47, 81, 177));
-        }    
-    }
-    .back {
-        z-index: 1;
-        word-wrap: break-word;
-        line-height: 1.6;
-        @include transform(rotatey(-180deg));
-          .definition {
+}
+
+    .notecard {
+        width: 30%;
+        height: 180px;
+        border: 1px solid black;
+        display: inline-block;
+        margin: 20px;
+        font-family: Roboto, sans-serif;
+        box-shadow: 1px 1px 2px 2px rgba(0,0,0,.2);
+        &:hover{
+            @include transform (rotatey(-180deg)); 
+            @include transition (1s);
+        }
+        @include transform-style(preserve-3d);
+
+        .front, .back {
             width: 100%;
             height: 100%;
-    }
+            position: absolute;
+            @include backface-visibility;
+        }
+
+        .front {
+            z-index: 3;
+            font-size: 20px;
+            @include parallax-background("https://i.pinimg.com/474x/38/01/18/380118bacf2ee60e56c54fe1e450f740.jpg");
+            color: rgb(190, 238, 78);
+            border : {
+                width: 5px;
+                radius: 5px;
+                style: solid;
+            }
+            .word {
+                display: block;
+                text-align: center;
+                position: relative;
+                top: 40%;
+                @include hover-color(rgb(111, 202, 103));
+                color: rgb(190, 238, 78);
+                border : {
+                    width: 5px;
+                    radius: 5px;
+                    style: solid;
+                }
+                background-color: black;
+            }    
+        }
+        .back {
+            z-index: 1;
+            word-wrap: break-word;
+            line-height: 1.6;
+            background-color: black;
+            opacity: 80%;
+            @include transform(rotatey(-180deg)); 
+        
+            .definition {
+                margin : {
+                    left: 20%;
+                    right: 20%;
+                    top: 10%;
+                }
+            text-align: center;
+            color: rgb(190, 238, 78);
+            border : {
+                width: 5px;
+                radius: 5px;
+                style: solid;
+                background-color: black;
+            }          
+        }
     }
 }
