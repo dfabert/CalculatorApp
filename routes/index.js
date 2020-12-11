@@ -1,4 +1,5 @@
 const path = require("path");
+const jwt = require('jsonwebtoken');
 const router = require("express").Router();
 const apiRoutes = require("./api");
 const passport = require("passport");

@@ -12,7 +12,7 @@ export default class Login extends Component {
     };
   };
 
-  submit(e) {
+  submit = (e) => {
     e.preventDefault();
     e.stopPropagation();
     

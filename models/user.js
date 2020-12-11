@@ -2,7 +2,7 @@ const mongoose = require('mongoose'),
       bcrypt = require('bcrypt')
 
 // Mongoose Model
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     index: true,
@@ -20,7 +20,7 @@ var userSchema = new mongoose.Schema({
 
 // Hash password before saving
 userSchema.pre('save', function(next) {
-  var user = this
+  const user = this
 
   // If not registration
   if ( !user.isModified('password') ) return next()
@@ -36,7 +36,7 @@ userSchema.pre('save', function(next) {
 
 // Password verification
 userSchema.methods.login = function(password) {
-  var user = this
+  const user = this
   return new Promise((resolve, reject) => {
     bcrypt.compare(password, user.password, (err, result) => {
       if ( err ) { reject(err) }
