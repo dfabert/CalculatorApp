@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Results from '../results/VerticalResults';
 import Button from 'react-bootstrap/Button';
 import './Basic.scss';
+import API from "../utils/API";
 
 function Basic() {
 
@@ -11,6 +12,25 @@ function Basic() {
   const [num1, updateNum1] = useState(0);
   const [oppr, updateOppr] = useState('');
   const [equalSave, updateEqualSave] = useState([]);
+
+  //Will be a hook later
+  const [updateCalculations, setUpdateCalculations] = useState(false);
+  const [calculations, setCalculations] = useState([]);
+
+  useEffect(() => {
+      loadCalculations()
+  }, [updateCalculations])
+
+  function loadCalculations() {
+      console.log("----'Loading Calculations'-----");
+      API.getCalculations()
+          .then(res =>
+              setCalculations(res.data)    
+          )
+          .catch(err => console.log(err));
+  };
+
+  //End of will be hook
 
   const enterChar = char => {
     if(char == '+' || char == '-' || char == 'x' || char == '/' || char == '='){  //determine if we have an operator
@@ -99,7 +119,7 @@ function Basic() {
           );
         })}
       </div>
-      <Results />
+      <Results calculations={calculations} />
     </div>
   );
 }
