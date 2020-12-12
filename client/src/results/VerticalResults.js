@@ -3,31 +3,19 @@ import API from "../utils/API";
 import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 
-function Results() {
-     
-    const[calculations, setCalculations] = useState([])
+function Results({calculations}) {
+    let display = calculations.reverse().slice(0,Math.min(5,calculations.length));
+    console.log(display);
 
-    useEffect(() => {
-        loadCalculations()
-    }, [])
-
-    function loadCalculations() {
-        console.log("----'Loading Calculations'-----");
-        API.getCalculations()
-            .then(res =>
-                setCalculations(res.data)    
-            )
-            .catch(err => console.log(err));
-    };
     return (
         <Container fluid>
             <h3>Past Calculations</h3>
-                {calculations.length ? (
+                {display.length ? (
                     <List>
-                        {calculations.map(calculation => (
+                        {display.map(calculation => (
                             <ListItem>
-                                {calculation.equation}
-                                {calculation.result}
+                                <div>{calculation.equation}</div>
+                                <div>{calculation.result}</div>
                             </ListItem>
                         ))}
                     </List>
