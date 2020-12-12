@@ -11,23 +11,7 @@ function Savings() {
   const [r, setRate] = useState(0.0);
   const [t, setTime] = useState(0);
   const [total, setTotal] = useState(0);
-  const [updateCalculations, setUpdateCalculations] = useState(false);
-  const [calculations, setCalculations] = useState([]);
-
-  //Will be a hook later
-  useEffect(() => {
-      loadCalculations()
-  }, [updateCalculations])
-
-  function loadCalculations() {
-      console.log("----'Loading Calculations'-----");
-      API.getCalculations()
-          .then(res =>
-              setCalculations(res.data)    
-          )
-          .catch(err => console.log(err));
-  };
-  //End of will be hook  
+  const [updateFlag, setUpdateFlag] = useState(false);
 
   function handlePrincipalChange(event){
       const { value } = event.target;
@@ -53,7 +37,7 @@ function Savings() {
       const amount = p * (Math.pow((1 + (rate / n)), (n * t)));
       setTotal(amount);
 
-      let equation = 'Principal: $' + p + '    Rate: ' + r + '%    Years: ' + r ;
+      let equation = 'Principal: $' + p + '    Rate: ' + r + '%    Years: ' + t ;
       let amountString = '$' + amount.toString();
 
       //Send to server
@@ -61,10 +45,9 @@ function Savings() {
         equation:  equation,
         result:  amountString,
         calculator:  'Savings'
-      }).then(() => setUpdateCalculations(!updateCalculations))
-      .catch(err => console.log(err));
-
-
+      }).then(() => {
+          setUpdateFlag(!updateFlag);
+      }).catch(err => console.log(err));
   };
 
   return (
@@ -95,7 +78,7 @@ function Savings() {
       </form>
       <div>Your savings at the end of {t} years</div>
       <div>${total}</div>
-      <Results calculations={calculations} />
+      <Results doupdate={updateFlag} />
     </div>
   );
 }
