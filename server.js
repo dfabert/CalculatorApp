@@ -30,7 +30,7 @@ app.use(routes);
 app.use(userRoutes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/calculatorapplication",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1/calculatorapplication",
   { 
     useNewUrlParser: true,
     useUnifiedTopology: true,

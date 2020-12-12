@@ -8,9 +8,9 @@ router.post('/api/signup', (req, res) => {
       password: req.body.password
     });
 
-    console.log(user);
+    res.json(user);
   
-    user.save().then(savedUser => {
+    User.create(user).then(savedUser => {
       console.log(savedUser);
       req.login(user, (err) => {
         if (err) { console.log("errors and stuff") };
