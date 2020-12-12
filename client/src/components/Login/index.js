@@ -55,7 +55,7 @@ export default class Login extends Component {
             </div>
             <div>
               <label>Password: </label>
-              <input type="password" name="password" pattern=".{6,20}" required />
+              <input type="password" name="password" required />
             </div>
             <div>
               <input type="submit" value="Log in" />

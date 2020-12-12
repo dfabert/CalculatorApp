@@ -18,15 +18,19 @@ export default class SignupForm extends React.Component {
         
         console.log(`signup form, username: ${this.state.username}`);
     
-        fetch('/api/signup', {
+        fetch('/api/user', {
             method: 'POST',
-            body: {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
                 username: this.state.username,
                 password: this.state.password
-            }
+            })
         }).then((response) => {
             console.log(response);
-            // window.location.href = '/';
+            window.location.href = '/';
         }).catch(error => {
             console.log(`Signup server error: ${error}`);
             window.location.href = '/signup';
