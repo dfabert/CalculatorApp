@@ -3,7 +3,7 @@ import './Home.scss';
 
 function Home() {
     return (
-    <body>
+    <div>
         <div id="Welcome">
             <h1 class="title">Welcome to Omnicalculator</h1>
         </div><
@@ -38,7 +38,7 @@ function Home() {
               <div id="SignUp">
             <h1 class="button">Sign-up Now</h1>
         </div>
-    </body>
+    </div>
     )
 }
 

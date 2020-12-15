@@ -1,3 +1,16 @@
-div {
-    color: hotpink;
+.calculatorContainer {
+    display: inline;
 }
+
+
+    .calculatorInputs {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 10px;
+        width: 20%;
+        height: 60%;
+        text-align: center;
+        justify-content: center;
+
+    }
+
