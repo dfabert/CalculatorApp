@@ -3,6 +3,8 @@ import './Savings.scss';
 import { Input, FormBtn } from "../components/Form";
 import Results from '../results/VerticalResults';
 import API from "../utils/API";
+import Chart from '../components/Chart';
+
 
 function Savings() {
   //For now, compound monthly
@@ -12,6 +14,11 @@ function Savings() {
   const [t, setTime] = useState(0);
   const [total, setTotal] = useState(0);
   const [updateFlag, setUpdateFlag] = useState(false);
+  const [chartData, setChartData] = useState({});
+
+  useEffect(() => {
+    createChartData();
+  },[total]);
 
   function handlePrincipalChange(event){
       const { value } = event.target;
@@ -28,10 +35,23 @@ function Savings() {
     setTime(value);
   };
 
+  function createChartData() {
+      let newData = {
+        labels:['start', 'end'],
+        datasets:[
+          {
+            label:'savings',
+            data:[p,total]
+          }
+        ]
+      }
+      setChartData(newData);
+  }
+
   function handleFormSubmit(event) {
     event.preventDefault();
-    // Compound interest example:  A = P(1+r/n)^nt
-    // n = 12 for monthly compound
+      // Compound interest example:  A = P(1+r/n)^nt
+      // n = 12 for monthly compound
       let n = 12;
       let rate = r/100
       const amount = p * (Math.pow((1 + (rate / n)), (n * t)));
@@ -40,7 +60,6 @@ function Savings() {
       let equation = 'Principal: $' + p + '    Rate: ' + r + '%    Years: ' + t ;
       let amountString = '$' + amount.toString();
 
-      //Send to server
       API.saveCalculation({
         equation:  equation,
         result:  amountString,
@@ -48,6 +67,7 @@ function Savings() {
       }).then(() => {
           setUpdateFlag(!updateFlag);
       }).catch(err => console.log(err));
+
   };
 
   return (
@@ -78,6 +98,7 @@ function Savings() {
       </form>
       <div>Your savings at the end of {t} years</div>
       <div>${total}</div>
+      <Chart chartData={chartData} />
       <Results doupdate={updateFlag} />
     </div>
   );

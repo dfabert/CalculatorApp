@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import API from "../utils/API";
 import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Component } from 'react';
 
 function Results(props) {
 
@@ -15,7 +14,6 @@ function Results(props) {
     const loadCalculations = () => {
         API.getCalculations()
             .then(res =>{
-                console.log(res)
                 setDisplay(res.data.reverse().slice(0,Math.min(5,res.data.length)))
             })
             .catch(err => console.log(err));
