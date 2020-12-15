@@ -22,7 +22,7 @@ function NavTabs() {
           <NavDropdown title="Financial" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1" as={Link} to="/Financial/Savings">Savings</NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.1" as={Link} to="/Financial/Savings">Savings</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.1" as={Link} to="/Financial/Budget">Budget</NavDropdown.Item>
           </NavDropdown>
         </li>
         <li class="nav-item active"> 
