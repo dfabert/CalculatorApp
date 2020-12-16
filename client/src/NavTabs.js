@@ -28,6 +28,9 @@ function NavTabs() {
         <li class="nav-item active"> 
           <Nav.Link as={Link} to="/Currency">Currency</Nav.Link>
         </li>
+        <li class="nav-item active"> 
+          <Nav.Link as={Link} to="/Random">Random</Nav.Link>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">

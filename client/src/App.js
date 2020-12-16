@@ -9,6 +9,7 @@ import Basic from './calculators/Basic';
 import Savings from './calculators/Savings';
 import Budget from './calculators/Budget';
 import Currency from './calculators/Currency';
+import Random from './calculators/Random';
 import './app.scss';
 
 
@@ -25,6 +26,7 @@ function App() {
         <Route exact path = '/Financial/Savings' component={Savings} />
         <Route exact path = '/Financial/Budget' component={Budget} />
         <Route exact path = '/Currency' component={Currency} />
+        <Route exact path = '/Random' component={Random} />
       </div>
     </Router>
   );

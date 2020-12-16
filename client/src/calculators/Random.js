@@ -1,6 +1,12 @@
 'use strict';
-import React from 'react';
-import './random.scss';
+import React from "react";
+//import Results from '../results/VerticalResults';
+//import Button from 'react-bootstrap/Button';
+
+import './Random.scss';
+//import API from "../utils/API";
+
+//import './random.scss';
 
 function Random(){
 
@@ -12,3 +18,5 @@ function Random(){
         </div>
     );
 }
+
+export default Random;
