@@ -11,6 +11,6 @@ export default {
     return axios.delete("/api/calculations/" + id);
   },
   saveCalculation: function(calculationData) {
-    return axios.post("/api/", calculationData);
+    return axios.post("/api/calculations", calculationData);
   }
 };
