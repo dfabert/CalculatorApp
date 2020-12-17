@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Results from '../results/VerticalResults';
 import Button from 'react-bootstrap/Button';
 import './Basic.scss';
@@ -10,34 +10,40 @@ function Basic() {
   const [display, setDisplay] = useState('');
   const [num1, setNum1] = useState(0);
   const [oppr, setOppr] = useState(null);
-
-  //Will be a hook later
-  const [updateCalculations, setUpdateCalculations] = useState(false);
-  const [calculations, setCalculations] = useState([]);
+  const [updateFlag, setUpdateFlag] = useState(false);
+  const [equationString, setEquationString] = useState('');
+  const [num2, setNum2] = useState(0);
 
   useEffect(() => {
-      loadCalculations()
-  }, [updateCalculations])
+    saveThisCalculation();
+  },[num1]);
 
-  function loadCalculations() {
-      console.log("----'Loading Calculations'-----");
-      API.getCalculations()
-          .then(res =>
-              setCalculations(res.data)    
-          )
-          .catch(err => console.log(err));
-  };
-  //End of will be hook
+
+  const saveThisCalculation = () => {
+    console.log('to the backend');
+    if (oppr !== null){      
+      console.log(equationString);
+      API.saveCalculation({
+        equation:  equationString,
+        result:  num1,
+        calculator:  'Basic'
+      }).then(() => {
+          setUpdateFlag(!updateFlag);
+      }).catch(err => console.log(err));
+      }
+    }
 
   const enterChar = char => {
     //addition
     if (char === "+") {
       if (oppr !== null) {
+        console.log(num1, oppr, display);
+        setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
-        } else if (oppr === "−") {
+        } else if (oppr === '-') {
           setNum1(num1 - parseFloat(display));
-        } else if (oppr === "×") {
+        } else if (oppr === "x") {
           setNum1(num1 * parseFloat(display));
         } else if (oppr === "/") {
           setNum1(num1 / parseFloat(display));
@@ -51,20 +57,21 @@ function Basic() {
     }
 
     //subtraction
-    if (char === "-") {
+    if (char === '-') {
       if (oppr !== null) {
+        console.log(num1, oppr, display);
+        setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
-        } else if (oppr === "−") {
+        } else if (oppr === '-') {
           setNum1(num1 - parseFloat(display));
-        } else if (oppr === "×") {
+        } else if (oppr === "x") {
           setNum1(num1 * parseFloat(display));
         } else if (oppr === "/") {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        let newNum1 = parseFloat(display);
-        setNum1(newNum1);
+        setNum1(parseFloat(display));
       }
       setDisplay("");
       setOppr("-");
@@ -74,18 +81,19 @@ function Basic() {
     //multiplication
     if (char === "x") {
       if (oppr !== null) {
+        console.log(num1, oppr, display);
+        setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
-        } else if (oppr === "−") {
+        } else if (oppr === '-') {
           setNum1(num1 - parseFloat(display));
-        } else if (oppr === "×") {
+        } else if (oppr === "x") {
           setNum1(num1 * parseFloat(display));
         } else if (oppr === "/") {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        let newNum1 = parseFloat(display);
-        setNum1(newNum1);
+        setNum1(parseFloat(display));
       }
       setDisplay("");
       setOppr("x");
@@ -95,18 +103,18 @@ function Basic() {
     //division
     if (char === "/") {
       if (oppr !== null) {
+        setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
-        } else if (oppr === "−") {
+        } else if (oppr === '-') {
           setNum1(num1 - parseFloat(display));
-        } else if (oppr === "×") {
+        } else if (oppr === "x") {
           setNum1(num1 * parseFloat(display));
         } else if (oppr === "/") {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        let newNum1 = parseFloat(display);
-        setNum1(newNum1);
+        setNum1(parseFloat(display));
       }
       setDisplay("");
       setOppr("/");
@@ -114,25 +122,29 @@ function Basic() {
     }
 
     if (char === "=") {
+      console.log(num1, oppr, display);
       if (!oppr) return;
       if (oppr === "+") {
-        setDisplay((num1 + parseFloat(display)).toString());
-      } else if (oppr === "−") {
-        setDisplay((num1 - parseFloat(display)).toString());
-      } else if (oppr === "×") {
-        setDisplay((num1 * parseFloat(display)).toString());
+        setEquationString(num1.toString() +  " + " + display);
+        setNum1(num1 + parseFloat(display));
+      } else if (oppr === '-') {
+        setEquationString(num1.toString() +  " + " + display);
+        setNum1(num1 - parseFloat(display));
+      } else if (oppr === "x") {
+        setEquationString(num1.toString() +  " + " + display);
+        setNum1(num1 * parseFloat(display));
       } else if (oppr === "/") {
-        setDisplay((num1 / parseFloat(display)).toString());
+        setEquationString(num1.toString() +  " + " + display);
+        setNum1(num1 / parseFloat(display));
       }
-      setNum1(null);
-      setOppr(null);
+      setDisplay('');
       return;
     }
 
     //clear button
     if (char === 'clear'){
-      setDisplay('0');
-      setNum1('0');
+      setDisplay('');
+      setNum1(0);
       setOppr('');
       return
     }
@@ -154,7 +166,7 @@ function Basic() {
           );
         })}
       </div>
-           <Results calculations={calculations} />
+      <Results doupdate={updateFlag} />
     </div>
   );
 }
