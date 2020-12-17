@@ -6,12 +6,10 @@ import API from "../utils/API";
 
 function Basic() {
 
-  const buttonChars = ['1','2','3','4','5','6','7','8','9','0','/','x','-','+','='];
-
-  const [input, updateInput] = useState('');
-  const [num1, updateNum1] = useState(0);
-  const [oppr, updateOppr] = useState('');
-  const [equalSave, updateEqualSave] = useState([]);
+  const buttonChars = ['1','2','3','4','5','6','7','8','9','0','/','x','-','+','=',"clear"];
+  const [display, setDisplay] = useState('');
+  const [num1, setNum1] = useState(0);
+  const [oppr, setOppr] = useState(null);
 
   //Will be a hook later
   const [updateCalculations, setUpdateCalculations] = useState(false);
@@ -29,97 +27,134 @@ function Basic() {
           )
           .catch(err => console.log(err));
   };
-
   //End of will be hook
 
   const enterChar = char => {
-    if(char == '+' || char == '-' || char == 'x' || char == '/' || char == '='){  //determine if we have an operator
-      if(oppr === ''){ //if operator has not been saved previously
-      console.log('saving ' + char + ' to Oppr');
-      let num = parseFloat(input);
-      updateNum1(num);
-      updateInput('');
-      updateOppr(char);
-      }
-      else if(oppr === '+'){      //addition
-        console.log('adding');
-        let num = parseFloat(input);
-        let answer = num1 + num;
-        updateEqualSave([oppr, num, true]);
-        updateNum1(answer);
-        updateInput('');
-        updateOppr(char);     
-      }
-      else if(oppr === '-'){      //subtraction
-        console.log('subtraction');
-        let num = parseFloat(input);
-        let answer = num1 - num;
-        updateEqualSave([oppr, num, true]);
-        updateNum1(answer);
-        updateInput('');
-        updateOppr(char);
-      }
-      else if(oppr === 'x'){      //multiplication
-        console.log('multiplication');
-        let num = parseFloat(input);
-        let answer = num1*num;
-        updateEqualSave([oppr, num, true]);
-        updateNum1(answer);
-        updateInput('');
-        updateOppr(char);
-      }
-      else if(oppr === '/'){      //division
-        console.log('division');
-        let num = parseFloat(input);
-        let answer = num1/num;
-        updateEqualSave([oppr, num, true]);
-        updateNum1(answer);
-        updateInput('');
-        updateOppr(char);
-      }
-      else if(oppr === '='){  //Handles the user pushing equals several times
-        console.log('DOUBLE EQUAL!!!');
-        if(equalSave[0] == '+'){
-          let answer = num1 + equalSave[1]
-          updateNum1(answer);
+    //addition
+    if (char === "+") {
+      if (oppr !== null) {
+        if (oppr === "+") {
+          setNum1(num1 + parseFloat(display));
+        } else if (oppr === "−") {
+          setNum1(num1 - parseFloat(display));
+        } else if (oppr === "×") {
+          setNum1(num1 * parseFloat(display));
+        } else if (oppr === "/") {
+          setNum1(num1 / parseFloat(display));
         }
-        else if(equalSave[0] == '-'){
-          let answer = num1 - equalSave[1]
-          updateNum1(answer);
-        }
-        else if(equalSave[0] == 'x'){
-          let answer = num1 * equalSave[1]
-          updateNum1(answer);
-        }
-        else if(equalSave[0] == '/'){
-          let answer = num1 / equalSave[1]
-          updateNum1(answer);
-        }
+      } else {
+        setNum1(parseFloat(display));
       }
+      setDisplay("");
+      setOppr("+");
+      return;
     }
-    else{   //will catch all non-operators (numbers)
-        if(equalSave[2]){
-          updateEqualSave([,,false]);
-          updateOppr('');
+
+    //subtraction
+    if (char === "-") {
+      if (oppr !== null) {
+        if (oppr === "+") {
+          setNum1(num1 + parseFloat(display));
+        } else if (oppr === "−") {
+          setNum1(num1 - parseFloat(display));
+        } else if (oppr === "×") {
+          setNum1(num1 * parseFloat(display));
+        } else if (oppr === "/") {
+          setNum1(num1 / parseFloat(display));
         }
-        console.log(char);
-        let newInput = input + char;
-        updateInput(newInput);
+      } else {
+        let newNum1 = parseFloat(display);
+        setNum1(newNum1);
       }
+      setDisplay("");
+      setOppr("-");
+      return;
+    }
+
+    //multiplication
+    if (char === "x") {
+      if (oppr !== null) {
+        if (oppr === "+") {
+          setNum1(num1 + parseFloat(display));
+        } else if (oppr === "−") {
+          setNum1(num1 - parseFloat(display));
+        } else if (oppr === "×") {
+          setNum1(num1 * parseFloat(display));
+        } else if (oppr === "/") {
+          setNum1(num1 / parseFloat(display));
+        }
+      } else {
+        let newNum1 = parseFloat(display);
+        setNum1(newNum1);
+      }
+      setDisplay("");
+      setOppr("x");
+      return;
+    }
+
+    //division
+    if (char === "/") {
+      if (oppr !== null) {
+        if (oppr === "+") {
+          setNum1(num1 + parseFloat(display));
+        } else if (oppr === "−") {
+          setNum1(num1 - parseFloat(display));
+        } else if (oppr === "×") {
+          setNum1(num1 * parseFloat(display));
+        } else if (oppr === "/") {
+          setNum1(num1 / parseFloat(display));
+        }
+      } else {
+        let newNum1 = parseFloat(display);
+        setNum1(newNum1);
+      }
+      setDisplay("");
+      setOppr("/");
+      return;
+    }
+
+    if (char === "=") {
+      if (!oppr) return;
+      if (oppr === "+") {
+        setDisplay((num1 + parseFloat(display)).toString());
+      } else if (oppr === "−") {
+        setDisplay((num1 - parseFloat(display)).toString());
+      } else if (oppr === "×") {
+        setDisplay((num1 * parseFloat(display)).toString());
+      } else if (oppr === "/") {
+        setDisplay((num1 / parseFloat(display)).toString());
+      }
+      setNum1(null);
+      setOppr(null);
+      return;
+    }
+
+    //clear button
+    if (char === 'clear'){
+      setDisplay('0');
+      setNum1('0');
+      setOppr('');
+      return
+    }
+
+    else {
+      let newDisplay = display + char;
+      setDisplay(newDisplay);
+    }
   };
   
   return (    
     <div>
       Basic Calculator
-      <div>{input === '' ? num1 : input  } </div>
+      <div>{display === '' ? num1 : display  } </div>
       <div>
         {buttonChars.map(char => {
           return (
-            <Button key ={char}variant="secondary" onClick={() => enterChar(char)}>{char}</Button>
+            <Button key ={char} variant="secondary" onClick={() => enterChar(char)}>{char}</Button>
           );
         })}
       </div>
-      <Results calculations={calculations} />
+           <Results calculations={calculations} />
     </div>
   );
 }
