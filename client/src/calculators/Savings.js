@@ -111,8 +111,8 @@ function Savings() {
           Calculate!
         </FormBtn>
       </form>
-      <div>Your savings at the end of {t} years</div>
-      <div>${total}</div>
+      <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
+      <div>{total === 0 ? null : "$" + total}</div>
       <Chart chartData={chartData} />
       <Results doupdate={updateFlag} />
     </div>
