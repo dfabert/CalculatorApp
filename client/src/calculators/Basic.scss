@@ -1,3 +1,67 @@
-div {
-    color: hotpink;
-}
+.calculatorContainer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    color: black;
+    background-image: linear-gradient(to right, rgba(42, 192, 49, 0), rgb(146, 241, 116)), url("https://i.pinimg.com/236x/35/4a/4f/354a4faa4c231e3f5dbf308b7c58b458.jpg");
+
+    .calculator-screen {
+        width: 100%;
+        font-size: 3rem;
+        height: 80px;
+        border: none;
+        background-color: #252525;
+        color: #fff;
+        text-align: right;
+        padding-right: 20px;
+        padding-left: 10px;
+    }
+        
+    .calculatorInputs {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-gap: 10px;
+        width: 20%;
+        height: 60%;
+        text-align: center;
+        justify-content: center;
+        transform: translate(100%, 10%);
+        color: white;
+        
+            Button {
+                outline: none;
+                border: 0;
+                padding: 1rem;
+                background-color: rgb(24, 24, 26);
+                font-size: 1.25rem;
+                line-height: 1;
+                color: var(--accent);
+                transition: all var(--transition) var(--easing);
+                    
+                &:hover {
+                    color: var(--accent-dk);
+                }
+                    
+                &.block {
+                    width: 100%;
+                }
+                    
+                &.transparent {
+                    background-color: transparent;
+                }
+                    
+                &.no-padding {
+                    padding: 0;
+                }
+                &.long-text { 
+                    font-size: 1rem; }
+            }
+        }   
+    }
+
+
+

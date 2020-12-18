@@ -7,6 +7,7 @@ import UserContext from '../utils/UserContext';
 
 function Basic() {
 
+
   const buttonChars = ['1','2','3','4','5','6','7','8','9','0','/','x','-','+','=',"clear"];
   const [display, setDisplay] = useState('');
   const [num1, setNum1] = useState(0);
@@ -14,6 +15,7 @@ function Basic() {
   const [updateFlag, setUpdateFlag] = useState(false);
   const [equationString, setEquationString] = useState('');
   const [num2, setNum2] = useState(0);
+
 
   const { id } = useContext(UserContext);
 
@@ -159,11 +161,11 @@ function Basic() {
   };
   
   return (    
-    <div>
-      Basic Calculator
-      <div>{display === '' ? num1 : display  } </div>
-      <div>
-        HERE IT IS:  {id}
+    <div className='calculatorContainer'>
+      <title>Basic Calculator</title>
+      <div className='calculator-screen'>{input === '' ? num1 : input  } </div>
+      <div className='calculatorInputs'>
+
         {buttonChars.map(char => {
           return (
             <Button key ={char} variant="secondary" onClick={() => enterChar(char)}>{char}</Button>
@@ -172,7 +174,10 @@ function Basic() {
       </div>
       <Results doupdate={updateFlag} />
     </div>
+    
+    
   );
+  
 }
 
 export default Basic;
