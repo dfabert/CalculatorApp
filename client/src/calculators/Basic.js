@@ -8,13 +8,13 @@ import UserContext from '../utils/UserContext';
 function Basic() {
 
 
-  const buttonChars = ['1','2','3','4','5','6','7','8','9','0','/','x','-','+','=',"clear"];
+  const buttonChars = ['1','2','3','+','4','5','6','-','7','8','9','x','.','0','=',"/"];
   const [display, setDisplay] = useState('');
   const [num1, setNum1] = useState(0);
   const [oppr, setOppr] = useState(null);
+  const [equalsOn, setEqualsOn] = useState([false, null, '']);  //was equals last oppr?
   const [updateFlag, setUpdateFlag] = useState(false);
   const [equationString, setEquationString] = useState('');
-  const [num2, setNum2] = useState(0);
 
 
   const { id } = useContext(UserContext);
@@ -24,10 +24,8 @@ function Basic() {
   },[num1]);
 
 
-  const saveThisCalculation = () => {
-    console.log('to the backend');
-    if (oppr !== null){      
-      console.log(equationString);
+  const saveThisCalculation = () => {;
+    if (equationString !== ''){     
       API.saveCalculation({
         equation:  equationString,
         result:  num1,
@@ -35,14 +33,14 @@ function Basic() {
       }).then(() => {
           setUpdateFlag(!updateFlag);
       }).catch(err => console.log(err));
-      }
     }
+  }
 
   const enterChar = char => {
     //addition
     if (char === "+") {
+      setEqualsOn([false, null, '']);
       if (oppr !== null) {
-        console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
@@ -54,7 +52,9 @@ function Basic() {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        setNum1(parseFloat(display));
+        if (display !== ''){
+          setNum1(parseFloat(display));
+        }
       }
       setDisplay("");
       setOppr("+");
@@ -63,8 +63,8 @@ function Basic() {
 
     //subtraction
     if (char === '-') {
+      setEqualsOn([false, null, '']);
       if (oppr !== null) {
-        console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
@@ -76,7 +76,9 @@ function Basic() {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        setNum1(parseFloat(display));
+        if (display !== ''){
+          setNum1(parseFloat(display));
+        }
       }
       setDisplay("");
       setOppr("-");
@@ -85,8 +87,8 @@ function Basic() {
 
     //multiplication
     if (char === "x") {
+      setEqualsOn([false, null, '']);
       if (oppr !== null) {
-        console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
@@ -98,7 +100,9 @@ function Basic() {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        setNum1(parseFloat(display));
+        if (display !== ''){
+          setNum1(parseFloat(display));
+        }
       }
       setDisplay("");
       setOppr("x");
@@ -107,6 +111,7 @@ function Basic() {
 
     //division
     if (char === "/") {
+      setEqualsOn([false, null, '']);
       if (oppr !== null) {
         setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
@@ -119,30 +124,52 @@ function Basic() {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        setNum1(parseFloat(display));
+        if (display !== ''){
+          setNum1(parseFloat(display));
+        }
       }
       setDisplay("");
       setOppr("/");
       return;
     }
 
+    //equals
     if (char === "=") {
-      console.log(num1, oppr, display);
+      if (equalsOn[0]){
+        if (equalsOn[1] === "+") {
+          setEquationString(num1.toString() +  " + " + equalsOn[2]);
+          setNum1(num1 + parseFloat(equalsOn[2]));
+        } else if (equalsOn[1] === '-') {
+          setEquationString(num1.toString() +  " - " + equalsOn[2]);
+          setNum1(num1 - parseFloat(equalsOn[2]));
+        } else if (equalsOn[1] === "x") {
+          setEquationString(num1.toString() +  " x " + equalsOn[2]);
+          setNum1(num1 * parseFloat(equalsOn[2]));
+        } else if (equalsOn[1] === "/") {
+          setEquationString(num1.toString() +  " / " + equalsOn[2]);
+          setNum1(num1 / parseFloat(equalsOn[2]));
+        }
+      }
       if (!oppr) return;
       if (oppr === "+") {
         setEquationString(num1.toString() +  " + " + display);
         setNum1(num1 + parseFloat(display));
+        setEqualsOn([true, '+', display]);
       } else if (oppr === '-') {
-        setEquationString(num1.toString() +  " + " + display);
+        setEquationString(num1.toString() +  " - " + display);
         setNum1(num1 - parseFloat(display));
+        setEqualsOn([true, '-', display]);
       } else if (oppr === "x") {
-        setEquationString(num1.toString() +  " + " + display);
+        setEquationString(num1.toString() +  " x " + display);
         setNum1(num1 * parseFloat(display));
+        setEqualsOn([true, 'x', display]);
       } else if (oppr === "/") {
-        setEquationString(num1.toString() +  " + " + display);
+        setEquationString(num1.toString() +  " / " + display);
         setNum1(num1 / parseFloat(display));
+        setEqualsOn([true, '/', display]);
       }
       setDisplay('');
+      setOppr(null);
       return;
     }
 
@@ -150,11 +177,13 @@ function Basic() {
     if (char === 'clear'){
       setDisplay('');
       setNum1(0);
-      setOppr('');
+      setOppr(null);
+      setEqualsOn([false, null, '']);
       return
     }
 
     else {
+      setEqualsOn([false, null, '']);
       let newDisplay = display + char;
       setDisplay(newDisplay);
     }
@@ -165,17 +194,16 @@ function Basic() {
       <title>Basic Calculator</title>
       <div className='calculator-screen'>{display === '' ? num1 : display  } </div>
       <div className='calculatorInputs'>
-
         {buttonChars.map(char => {
           return (
             <Button key ={char} variant="secondary" onClick={() => enterChar(char)}>{char}</Button>
           );
         })}
       </div>
+      <Button key = 'clear' variant="secondary" onClick={() => enterChar('clear')}>clear</Button>
+      <Button key = {equalsOn} variant="secondary" onClick={() => console.log({equalsOn, display, oppr, num1})}>console.log</Button>
       <Results doupdate={updateFlag} />
     </div>
-    
-    
   );
   
 }
