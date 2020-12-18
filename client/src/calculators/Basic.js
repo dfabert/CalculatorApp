@@ -25,7 +25,7 @@ function Basic() {
 
 
   const saveThisCalculation = () => {;
-    if (oppr !== null){      
+    if (equationString !== ''){     
       API.saveCalculation({
         equation:  equationString,
         result:  num1,
@@ -33,15 +33,14 @@ function Basic() {
       }).then(() => {
           setUpdateFlag(!updateFlag);
       }).catch(err => console.log(err));
-      }
     }
+  }
 
   const enterChar = char => {
     //addition
     if (char === "+") {
       setEqualsOn([false, null, '']);
       if (oppr !== null) {
-        console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
@@ -66,7 +65,6 @@ function Basic() {
     if (char === '-') {
       setEqualsOn([false, null, '']);
       if (oppr !== null) {
-        console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
@@ -91,7 +89,6 @@ function Basic() {
     if (char === "x") {
       setEqualsOn([false, null, '']);
       if (oppr !== null) {
-        console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
           setNum1(num1 + parseFloat(display));
@@ -139,7 +136,6 @@ function Basic() {
     //equals
     if (char === "=") {
       if (equalsOn[0]){
-        console.log(equalsOn);
         if (equalsOn[1] === "+") {
           setEquationString(num1.toString() +  " + " + equalsOn[2]);
           setNum1(num1 + parseFloat(equalsOn[2]));
