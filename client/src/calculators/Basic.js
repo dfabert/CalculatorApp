@@ -149,7 +149,7 @@ function Basic() {
     if (char === 'clear'){
       setDisplay('');
       setNum1(0);
-      setOppr('');
+      setOppr(null);
       return
     }
 
