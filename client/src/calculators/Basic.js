@@ -12,6 +12,7 @@ function Basic() {
   const [display, setDisplay] = useState('');
   const [num1, setNum1] = useState(0);
   const [oppr, setOppr] = useState(null);
+  const [equalsOn, setEqualsOn] = useState([false, null, '']);  //was equals last oppr?
   const [updateFlag, setUpdateFlag] = useState(false);
   const [equationString, setEquationString] = useState('');
 
@@ -23,10 +24,8 @@ function Basic() {
   },[num1]);
 
 
-  const saveThisCalculation = () => {
-    console.log('to the backend');
+  const saveThisCalculation = () => {;
     if (oppr !== null){      
-      console.log(equationString);
       API.saveCalculation({
         equation:  equationString,
         result:  num1,
@@ -40,6 +39,7 @@ function Basic() {
   const enterChar = char => {
     //addition
     if (char === "+") {
+      setEqualsOn([false, null, '']);
       if (oppr !== null) {
         console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
@@ -53,7 +53,9 @@ function Basic() {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        setNum1(parseFloat(display));
+        if (display !== ''){
+          setNum1(parseFloat(display));
+        }
       }
       setDisplay("");
       setOppr("+");
@@ -62,6 +64,7 @@ function Basic() {
 
     //subtraction
     if (char === '-') {
+      setEqualsOn([false, null, '']);
       if (oppr !== null) {
         console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
@@ -75,7 +78,9 @@ function Basic() {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        setNum1(parseFloat(display));
+        if (display !== ''){
+          setNum1(parseFloat(display));
+        }
       }
       setDisplay("");
       setOppr("-");
@@ -84,6 +89,7 @@ function Basic() {
 
     //multiplication
     if (char === "x") {
+      setEqualsOn([false, null, '']);
       if (oppr !== null) {
         console.log(num1, oppr, display);
         setEquationString(num1.toString() +  oppr  + display);
@@ -97,7 +103,9 @@ function Basic() {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        setNum1(parseFloat(display));
+        if (display !== ''){
+          setNum1(parseFloat(display));
+        }
       }
       setDisplay("");
       setOppr("x");
@@ -106,6 +114,7 @@ function Basic() {
 
     //division
     if (char === "/") {
+      setEqualsOn([false, null, '']);
       if (oppr !== null) {
         setEquationString(num1.toString() +  oppr  + display);
         if (oppr === "+") {
@@ -118,30 +127,53 @@ function Basic() {
           setNum1(num1 / parseFloat(display));
         }
       } else {
-        setNum1(parseFloat(display));
+        if (display !== ''){
+          setNum1(parseFloat(display));
+        }
       }
       setDisplay("");
       setOppr("/");
       return;
     }
 
+    //equals
     if (char === "=") {
-      console.log(num1, oppr, display);
+      if (equalsOn[0]){
+        console.log(equalsOn);
+        if (equalsOn[1] === "+") {
+          setEquationString(num1.toString() +  " + " + equalsOn[2]);
+          setNum1(num1 + parseFloat(equalsOn[2]));
+        } else if (equalsOn[1] === '-') {
+          setEquationString(num1.toString() +  " - " + equalsOn[2]);
+          setNum1(num1 - parseFloat(equalsOn[2]));
+        } else if (equalsOn[1] === "x") {
+          setEquationString(num1.toString() +  " x " + equalsOn[2]);
+          setNum1(num1 * parseFloat(equalsOn[2]));
+        } else if (equalsOn[1] === "/") {
+          setEquationString(num1.toString() +  " / " + equalsOn[2]);
+          setNum1(num1 / parseFloat(equalsOn[2]));
+        }
+      }
       if (!oppr) return;
       if (oppr === "+") {
         setEquationString(num1.toString() +  " + " + display);
         setNum1(num1 + parseFloat(display));
+        setEqualsOn([true, '+', display]);
       } else if (oppr === '-') {
-        setEquationString(num1.toString() +  " + " + display);
+        setEquationString(num1.toString() +  " - " + display);
         setNum1(num1 - parseFloat(display));
+        setEqualsOn([true, '-', display]);
       } else if (oppr === "x") {
-        setEquationString(num1.toString() +  " + " + display);
+        setEquationString(num1.toString() +  " x " + display);
         setNum1(num1 * parseFloat(display));
+        setEqualsOn([true, 'x', display]);
       } else if (oppr === "/") {
-        setEquationString(num1.toString() +  " + " + display);
+        setEquationString(num1.toString() +  " / " + display);
         setNum1(num1 / parseFloat(display));
+        setEqualsOn([true, '/', display]);
       }
       setDisplay('');
+      setOppr(null);
       return;
     }
 
@@ -150,10 +182,12 @@ function Basic() {
       setDisplay('');
       setNum1(0);
       setOppr(null);
+      setEqualsOn([false, null, '']);
       return
     }
 
     else {
+      setEqualsOn([false, null, '']);
       let newDisplay = display + char;
       setDisplay(newDisplay);
     }
@@ -171,6 +205,7 @@ function Basic() {
         })}
       </div>
       <Button key = 'clear' variant="secondary" onClick={() => enterChar('clear')}>clear</Button>
+      <Button key = {equalsOn} variant="secondary" onClick={() => console.log({equalsOn, display, oppr, num1})}>console.log</Button>
       <Results doupdate={updateFlag} />
     </div>
   );
