@@ -58,6 +58,7 @@ body {
   padding: 0;
   font-family: $font1;
   color: #2e3738;
+  
 }
 
 .title {
@@ -73,6 +74,7 @@ body {
     width: 5px;
     radius: 5px;
     style: solid;
+
   }
   perspective: 1px;
   transform: translateZ(-1px);
@@ -136,7 +138,7 @@ p {
 }
 
     .notecard {
-        width: 30%;
+        width: 29.5%;
         height: 180px;
         border: 1px solid black;
         display: inline-block;
@@ -206,4 +208,159 @@ p {
             }          
         }
     }
+}
+
+
+@media (max-width: 640px) {
+    html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: $font1;
+  color: #2e3738;
+}
+
+.title {
+    color: rgb(190, 238, 78);
+}
+
+#Welcome {
+  height: 20%;
+  width: 100%;
+  color: rgb(190, 238, 78);
+  border : {
+    width: 5px;
+    radius: 5px;
+    style: solid;
+  }
+  vertical-align: middle;
+  perspective: 1px;
+  transform: translateZ(-1px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  @include parallax-background("https://t4.ftcdn.net/jpg/02/00/11/87/360_F_200118749_rA5PKAUDD0xeB44ZstUclNdevoGsvnwd.jpg");
+}
+
+#SignUp {
+  height: 20%;
+  width: 100%;
+  color: black;
+
+  perspective: 1px;
+  transform: translateZ(-1px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  @include parallax-background("https://i.pinimg.com/564x/f2/b8/5d/f2b85d89ced925a7b60792152913a8e8.jpg");
+}
+
+#Welcome,
+#SignUp {
+  
+	h1{
+		text-transform: uppercase;
+	  	font-family: $font1;
+	  	letter-spacing: 0.06em;
+        font-size: 8vw;  
+	  	text-align: center;
+        transform: translateZ(-1px);
+	}
+}
+
+p {
+	width: 70%;
+	padding: 5%;
+	margin: $center-margin;
+	text-align: center;
+	font-size: 2vw;
+	font-weight: 200;
+    line-height: 1.4;
+    color: black;
+}
+
+.title {
+    border : {
+        width: 5px;
+        radius: 5px;
+        style: solid;
+    }
+    background-color: black;
+}
+
+#notecards {
+    display: inline;
+}
+
+    .notecard {
+        width: 100%;
+        height: 60px;
+        
+        border: 1px solid black;
+        display: inline-block;
+        
+        font-family: Roboto, sans-serif;
+        box-shadow: 1px 1px 2px 2px rgba(0,0,0,.2);
+        &:hover{
+            @include transform (rotatey(-180deg)); 
+            @include transition (1s);
+        }
+        @include transform-style(preserve-3d);
+
+        .front, .back {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            @include backface-visibility;
+        }
+
+        .front {
+            z-index: 3;
+            font-size: 2vw;
+            @include parallax-background("https://i.pinimg.com/474x/38/01/18/380118bacf2ee60e56c54fe1e450f740.jpg");
+            color: rgb(190, 238, 78);
+            border : {
+                width: 2px;
+                radius: 5px;
+                style: solid;
+            }
+            .word {
+                display: block;
+                text-align: center;
+                position: relative;
+                top: 40%;
+                @include hover-color(rgb(111, 202, 103));
+                color: rgb(190, 238, 78);
+                border : {
+                    width: 1px;
+                    radius: 5px;
+                    style: solid;
+                }
+                background-color: black;
+            }    
+        }
+        .back {
+            z-index: 1;
+            word-wrap: break-word;
+            line-height: 1.6;
+            background-color: black;
+            opacity: 80%;
+            @include transform(rotatey(-180deg)); 
+        
+            .definition {
+                margin : {
+                    left: 20%;
+                    right: 20%;
+                    top: 10%;
+                }
+            text-align: center;
+            font-size: 1.3vw;
+            color: rgb(190, 238, 78);
+            border : {
+                width: 1px;
+                radius: 5px;
+                style: solid;
+                background-color: black;
+            }          
+        }
+    }
+}
 }

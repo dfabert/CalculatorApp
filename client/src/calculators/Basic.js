@@ -5,7 +5,7 @@ import './Basic.scss';
 
 function Basic() {
 
-  const buttonChars = ['/','x','-','+','=','1','2','3','4','5','6','7','8','9','0'];
+  const buttonChars = ['/','x','-','+','1','2','3','4','5','6','7','8','9','0','='];
 
   const [input, updateInput] = useState('');
   const [num1, updateNum1] = useState(0);
@@ -90,8 +90,8 @@ function Basic() {
   
   return (    
     <div className='calculatorContainer'>
-      Basic Calculator
-      <div className='calculator'>{input === '' ? num1 : input  } </div>
+      <title>Basic Calculator</title>
+      <div className='calculator-screen'>{input === '' ? num1 : input  } </div>
       <div className='calculatorInputs'>
         {buttonChars.map(char => {
           return (
@@ -101,6 +101,7 @@ function Basic() {
       </div>
       <Results />
     </div>
+    
     
   );
   
