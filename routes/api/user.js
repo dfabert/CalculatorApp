@@ -13,7 +13,7 @@ router.post('/', (req, res) => {
 
       req.login(user, (err) => {
         if (err) { console.log("errors and stuff", err) };
-        res.send('please')
+        res.json(user)
       });
     }).catch((err) => {
       console.log(err);
@@ -24,11 +24,13 @@ router.post('/', (req, res) => {
 router.post('/login', passport.authenticate('local', {
   session: false
 }), (req, res) => {
-
+  
   // Token
   const token = jwt.sign({id: req.user.id}, 'jwt_secret')
 
   res.json({token: token})
+  
+
 })
 
 module.exports = router;
