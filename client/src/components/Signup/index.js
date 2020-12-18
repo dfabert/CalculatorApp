@@ -1,23 +1,14 @@
-import React, {component} from 'react';
+import React, {  useState } from 'react';
 import './index.scss';
-const router = require('react-router')
+import { withRouter } from 'react-router-dom';
 
-export default class SignupForm extends React.Component {
+function SignupForm({ changeID, history }) {
 
-    constructor(props) {
-        super(props);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-        this.state = {
-            username: "",
-            password: ""
-        };
-    };
-
-    handleSubmit = (e) => {
-        e.preventDefault();
-        
-        console.log(`signup form, username: ${this.state.username}`);
-    
+    const handleSubmit = (e) => {
+        e.preventDefault();    
         fetch('/api/user', {
             method: 'POST',
             headers: {
@@ -25,32 +16,33 @@ export default class SignupForm extends React.Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                username: this.state.username,
-                password: this.state.password
+                username,
+                password
             })
-        }).then((response) => {
-            console.log(response);
-            window.location.href = '/';
-        }).catch(error => {
+        }).then((response) => response.json()).then(response => {
+            changeID(response._id).then(() =>  history.push('/'));
+        })
+        .catch(error => {
             console.log(`Signup server error: ${error}`);
             window.location.href = '/signup';
         });
     };
 
-    updateUsername = (e) => this.setState({  username: e.target.value  });
+    const updateUsername = (e) => setUsername(e.target.value);
+    const updatePassword = (e) => setPassword(e.target.value);
 
-    updatePassword = (e) => this.setState({  password: e.target.value  });
-
-    render() {
+    
         return (
             <div className='container'>
-                <form id='signup' onSubmit={this.handleSubmit}>
+                <form id='signup' onSubmit={handleSubmit}>
                     <h1>Sign Up for OmniCalculator</h1>
-                    <input type="text" name="username" placeholder="OmniUsername" onChange={this.updateUsername} />
-                    <input type="password" name="password" placeholder="Password" onChange={this.updatePassword} />
+                    <input type="text" name="username" placeholder="OmniUsername" onChange={updateUsername} />
+                    <input type="password" name="password" placeholder="Password" onChange={updatePassword} />
                     <br></br>
                     <input type="submit" value="Submit" />
                 </form>
             </div>);
-    };
+    
 };
+
+export default withRouter(SignupForm);

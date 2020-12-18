@@ -13,12 +13,11 @@ function Home() {
               }).then(res => {
                 return res.json()
               }).then(user => {
-                this.setState({user: user})
+                setUser(user)
               }).catch( err => {
                 console.log(err)
               });
         };
-
         fetchUser();
     }, []) 
 

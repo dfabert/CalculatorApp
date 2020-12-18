@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Results from '../results/VerticalResults';
 import Button from 'react-bootstrap/Button';
 import './Basic.scss';
 import API from "../utils/API";
+import UserContext from '../utils/UserContext';
 
 function Basic() {
 
@@ -13,6 +14,8 @@ function Basic() {
   const [updateFlag, setUpdateFlag] = useState(false);
   const [equationString, setEquationString] = useState('');
   const [num2, setNum2] = useState(0);
+
+  const { id } = useContext(UserContext);
 
   useEffect(() => {
     saveThisCalculation();
@@ -160,6 +163,7 @@ function Basic() {
       Basic Calculator
       <div>{display === '' ? num1 : display  } </div>
       <div>
+        HERE IT IS:  {id}
         {buttonChars.map(char => {
           return (
             <Button key ={char} variant="secondary" onClick={() => enterChar(char)}>{char}</Button>
