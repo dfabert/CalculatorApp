@@ -21,7 +21,7 @@ function Chart(props) {
           options={{
             title:{
               display:true,
-              text:'Title goes here',
+              text:'Savings Over Time',
               fontSize:20
             },
             legend:{

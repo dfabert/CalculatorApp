@@ -163,7 +163,7 @@ function Basic() {
   return (    
     <div className='calculatorContainer'>
       <title>Basic Calculator</title>
-      <div className='calculator-screen'>{input === '' ? num1 : input  } </div>
+      <div className='calculator-screen'>{display === '' ? num1 : display  } </div>
       <div className='calculatorInputs'>
 
         {buttonChars.map(char => {
