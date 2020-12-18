@@ -1,57 +1,48 @@
-import axios from 'axios';
-import React, {component} from 'react';
+import React, {  useState } from 'react';
 import './index.scss';
+import { withRouter } from 'react-router-dom';
 
-export default class SignupForm extends React.Component {
+function SignupForm({ changeID, history }) {
 
-    state = {
-        username: "",
-        password: ""
-    }
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-    handleSubmit(e) {
-        e.preventDefault();
-        
-        console.log(`signup form, username: ${this.state.username}`);
-    
-        axios.post('/', {
-            username: this.state.username,
-            password: this.state.password
-        }).then (response => {
-            console.log(response);
-            if (response.data) {
-                console.log('Successful signup!');
-                this.setState({
-                    redirectTo: '/login'
-                });
-            } else {
-                console.log('Signup error.');
-            }
-        }).catch(error => {
-            console.log(`Signup server error: ${error}`)
+    const handleSubmit = (e) => {
+        e.preventDefault();    
+        fetch('/api/user', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                password
+            })
+        }).then((response) => response.json()).then(response => {
+            changeID(response._id).then(() =>  history.push('/'));
+        })
+        .catch(error => {
+            console.log(`Signup server error: ${error}`);
+            window.location.href = '/signup';
         });
     };
 
-    updateUsername(e) {
-        this.state.username = e.target.value; 
-    };
+    const updateUsername = (e) => setUsername(e.target.value);
+    const updatePassword = (e) => setPassword(e.target.value);
 
-    updatePassword(e) {
-        this.state.password = e.target.value;
-    };
-
-    render() {
+    
         return (
-        <body>
-            <div class='container'>
-            <form id='signup' onSubmit={this.handleSubmit}>
-                <h1>Sign Up for OmniCalculator</h1>
-                <input type="text" name="username" placeholder="OmniUsername" onchange={this.updateUsername} />
-                <input type="password" name="password" placeholder="Password" onchange={this.updatePassword} />
-                <br></br>
-                <input type="submit" value="Submit" />
-            </form>
-            </div>
-        </body>);
-    };
+            <div className='container'>
+                <form id='signup' onSubmit={handleSubmit}>
+                    <h1>Sign Up for OmniCalculator</h1>
+                    <input type="text" name="username" placeholder="OmniUsername" onChange={updateUsername} />
+                    <input type="password" name="password" placeholder="Password" onChange={updatePassword} />
+                    <br></br>
+                    <input type="submit" value="Submit" />
+                </form>
+            </div>);
+    
 };
+
+export default withRouter(SignupForm);

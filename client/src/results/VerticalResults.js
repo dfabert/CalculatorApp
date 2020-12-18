@@ -4,31 +4,31 @@ import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import './VerticalResults.scss';
 
-function Results() {
-     
-    const[calculations, setCalculations] = useState([])
+function Results(props) {
+
+    const [display, setDisplay] = useState([]);
 
     useEffect(() => {
         loadCalculations()
-    }, [])
+    },[props]);
 
-    function loadCalculations() {
-        console.log("----'Loading Calculations'-----");
+    const loadCalculations = () => {
         API.getCalculations()
-            .then(res =>
-                setCalculations(res.data)    
-            )
+            .then(res =>{
+                setDisplay(res.data.reverse().slice(0,Math.min(5,res.data.length)))
+            })
             .catch(err => console.log(err));
-    };
+    }    
+
     return (
         <aside fluid>
             <h3>Past Calculations</h3>
-                {calculations.length ? (
+                {display.length ? (
                     <List>
-                        {calculations.map(calculation => (
+                        {display.map(calculation => (
                             <ListItem>
-                                {calculation.equation}
-                                {calculation.result}
+                                <div>{calculation.equation}</div>
+                                <div>{calculation.result}</div>
                             </ListItem>
                         ))}
                     </List>

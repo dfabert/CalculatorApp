@@ -1,8 +1,8 @@
 const mongoose = require('mongoose'),
-      bcrypt = require('bcrypt')
+      bcrypt = require('bcrypt');
 
 // Mongoose Model
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {
     type: String,
     index: true,
@@ -10,42 +10,42 @@ var userSchema = new mongoose.Schema({
     minlength: 2,
     maxlength: 16,
     required: true,
-
   },
   password: {
     type: String,
     required: true,
   }
-})
+});
 
 // Hash password before saving
 userSchema.pre('save', function(next) {
-  var user = this
+  const user = this;
 
   // If not registration
-  if ( !user.isModified('password') ) return next()
+  if ( !user.isModified('password') ) return next();
 
   bcrypt.hash(user.password, 10, (err, hash) => {
     if (err) {
       return next(err)
-    }
-    user.password = hash
-    next()
-  })
-})
+    };
+    user.password = hash;
+    next();
+  });
+});
 
 // Password verification
 userSchema.methods.login = function(password) {
-  var user = this
+  const user = this;
   return new Promise((resolve, reject) => {
     bcrypt.compare(password, user.password, (err, result) => {
-      if ( err ) { reject(err) }
-      resolve()
-    })
-  })
-}
+      if ( err ) { reject(err) };
+      resolve();
+    });
+  });
+};
 
 // Export Mongoose "User" model
-module.exports = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
+module.exports = User;
 
 //referenced from https://www.mokuji.me/article/passport-jwt-react
