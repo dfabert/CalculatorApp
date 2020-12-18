@@ -10,7 +10,7 @@ function NavTabs() {
   return (
 <>
 
-  <Navbar className='topnav' sticky='top'>
+  <Navbar sticky='top'>
     <Navbar.Brand as={Link} to="/"><i class="fas fa-infinity"></i>OmniCalculator</Navbar.Brand>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
