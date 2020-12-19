@@ -20,11 +20,12 @@ function SignupForm({ changeID, history }) {
                 password
             })
         }).then((response) => response.json()).then(response => {
-            changeID(response._id).then(() =>  history.push('/'));
+            changeID(response.user._id).then(() =>  history.push('/'));
+            localStorage.setItem('token', response.token);
         })
         .catch(error => {
             console.log(`Signup server error: ${error}`);
-            window.location.href = '/signup';
+            history.push('/signup');
         });
     };
 

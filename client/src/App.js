@@ -9,6 +9,7 @@ import Basic from './calculators/Basic';
 import Savings from './calculators/Savings';
 import Budget from './calculators/Budget';
 import Currency from './calculators/Currency';
+import Random from './calculators/Random';
 import './app.scss';
 import UserContext from "./utils/UserContext";
 import Graph from "./calculators/Graph";
@@ -45,9 +46,11 @@ function App() {
           <Route exact path = '/Currency' component={Currency} />
           <Route exact path = "/signup" component={() => <Signup changeID={changeID} />} />
           <Route exact path = '/graph' component={Graph}/>
+          <Route exact path = '/Random' component={Random} />
         </div>
       </Router>
     </UserContext.Provider>
+
   );
 }
 

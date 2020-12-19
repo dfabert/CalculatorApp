@@ -24,6 +24,7 @@ function NavTabs() {
           <NavDropdown.Item href="#action/3.1" as={Link} to="/Financial/Budget">Budget</NavDropdown.Item>
         </NavDropdown>     
         <Nav.Link as={Link} to="/Currency">Currency</Nav.Link>
+        <Nav.Link as={Link} to="/Random">Random</Nav.Link>
         <Nav.Link  id="signUp" as={Link} to="/Signup">Sign Up</Nav.Link>
         <NavDropdown title= "My Account" id="accountDropdown">
           <NavDropdown.Item href="#action/3.1" as={Link} to="/Login">Log In</NavDropdown.Item>
