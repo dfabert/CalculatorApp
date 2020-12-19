@@ -32,11 +32,7 @@ function Random(){
                     setClicked(true);
                 }}>ClickMe</button>
             }
-            {/* <button className='randomButton' value='Click me' onClick={()=>{ 
-                setRandom(Math.floor(Math.random() * 1000) + 1);}}>ClickMe</button>
-            <button className='resetButton'  onClick={()=>{
-                 setRandom(0);       
-            }}>StartAgain</button>     */}
+            {}
         </div>
     );
 
@@ -50,46 +46,9 @@ function click(){
     
  }
 
-// // // export default function App (){
-// // //     return (
-// // //         <div>
-// // //             <button onClick={click}>
-// // //                 What's your lucky number?
-// // //             </button>
-// // //         </div>
-// // //     )
-// // // }
 
 
 export default Random;
 
-// // class Button extends React.Component {
-// //     constructor(props) {
-// //         super(props);
-// //         this.state = {
-// //             random: 0
-// //         }
-// //     }
 
-// import React, {Component} from 'react';
-// import {Platform, StyleSheet, View, Button, Text} from 'react-native';
-// import { render } from 'sass';
-
-// constructor(){
-//     super();
-//     this.state = {
-//         numberHolder: 1
-//     }
-// }
-
-// generateRandomNumber = () => {
-//     var randomNumber = Math.floor(Math.random() * 100) + 1
-//     this.setState({numberHolder: randomNumber})
-// }
-// render() {
-//     <View style{StyleSheet.container}>
-//     <Text style={StyleSheet.headerText}>{this.state.numberHolder}</Text>
-//     <Button title='Generate Random Number' onPress={this.generateRandomNumber}/>
-//     </View>
-// }
   
