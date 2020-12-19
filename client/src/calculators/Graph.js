@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import Dropdown from '../components/Dropdown';
 import { Input, FormBtn } from '../components/Form'
-import { LineChart, BarChart, Donut } from '../components/Chart'
+import { LineChart, BarChart, PieChart } from '../components/Chart'
 
 const options = ['Bar Graph', 'Line Graph', 'Pie Chart'];
 
@@ -101,7 +101,7 @@ function Graph() {
         )
     }
 
-    function PieChart() {
+    function PieGraph() {
         return (
         <div>
             <DataEntry />
@@ -118,7 +118,7 @@ function Graph() {
             return <LineGraph />
         }
         if(selected === 'Pie Chart'){
-            return <PieChart />
+            return <PieGraph />
         }else{
             return <h1>Please Select A Graph</h1>
         }
