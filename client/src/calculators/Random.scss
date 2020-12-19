@@ -1,9 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .randomButton {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: 100;
@@ -22,16 +16,21 @@
   border-radius: 90px;
   transition: all 0.3s;
   box-shadow: 0 11px 25px rgba(0, 0, 0, 0.4);
-  //position: relative;
+  border: none;
+  outline: none;
 }
 
 .randomButton:hover {
   transform: translateY(-5px);
+  border: none;
+  outline: none;
 }
 
 .randomButton:active {
   transform: translateY(-2px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  outline: none;
+  border: none;
 }
 
 .randomButton::after {
@@ -45,6 +44,8 @@
   left: 0;
   z-index: -1;
   transition: all 0.3s;
+  border: none;
+  outline: none;
 }
 
 .randomButton:hover::after {
@@ -56,6 +57,14 @@
   );
   transform: scaleX(1.3) scaleY(1.8);
   opacity: 0;
+  border-color: #fff;
+  border: none;
+  outline: none;
+}
+
+.randomButton:focus {
+  border: none;
+  outline: none;
 }
 
 .resetButton {
@@ -77,15 +86,24 @@
   border-radius: 90px;
   transition: all 0.3s;
   box-shadow: 0 11px 25px rgba(0, 0, 0, 0.4);
+  border: none;
+  outline: none;
 }
 
 .resetButton:hover {
   transform: translateY(-5px);
+  border: none;
+  outline: none;
 }
 
 .resetButton:active {
   transform: translateY(-2px);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+  border: none;
+  outline: none;
+  border-color: #fff;
+  border: none;
+  outline: none;
 }
 
 .resetButton::after {
@@ -99,6 +117,9 @@
   left: 0;
   z-index: -1;
   transition: all 0.3s;
+  border-color: #fff;
+  border: none;
+  outline: none;
 }
 
 .resetButton:hover::after {
@@ -110,4 +131,11 @@
   );
   transform: scaleX(1.3) scaleY(1.8);
   opacity: 0;
+  border: none;
+  outline: none;
+}
+
+.resetButton:focus {
+  border: none;
+  outline: none;
 }
