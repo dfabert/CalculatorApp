@@ -1,28 +1,18 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 import isAuthenticated from '../../lib/isAuthenticated';
 
-export default class Login extends Component {
-  
-  constructor(props) {
-    super(props);
+function Login(props) {
 
-    this.state = {
-      username: "",
-      password: "",
-      loggedin: isAuthenticated()
-    };
-  };
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(isAuthenticated());
 
-  submit = (e) => {
+  const submit = (e) => {
     e.preventDefault();
     e.stopPropagation();
     
-    let form = e.target;
-    let formData = new FormData(form);
-    let params = JSON.stringify(formData);
-    console.log(params);
-    
+    console.log(username, password);
     // Send request to the server
     fetch('/api/user/login', {
       method: 'POST',
@@ -30,54 +20,50 @@ export default class Login extends Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        username: this.state.username,
-        password: this.state.password
-    })
+      body: JSON.stringify({username, password})
     }).then( (res) => {
       return res.json()
     }).then(data => {
       console.log(data);
       localStorage.setItem('token', data.token)
-      this.setState({loggedin: true})
+      setLoggedIn(true)
     }).catch( (err) => {
       console.error(err)
     });
   };
 
-  updateUsername = (e) => this.setState({  username: e.target.value  });
+  const updateUsername = (e) => setUsername(e.target.value);
+  const updatePassword = (e) => setPassword(e.target.value);
 
-  updatePassword = (e) => this.setState({  password: e.target.value  });
-
-  render() {
-    if ( this.state.loggedin ) {
-      return (
-        <Redirect
-          to={{
-            pathname: '/',
-            state: { from: this.props.location }
-          }}
-        />
-      );
-    } else {
-      return (
-        <div>
-          <h1>Login</h1>
-          <form onSubmit={this.submit.bind(this)}>
-            <div>
-              <label>Username: </label>
-              <input type="text" name="username" pattern=".{2,16}" required onChange={this.updateUsername} />
-            </div>
-            <div>
-              <label>Password: </label>
-              <input type="password" name="password" required onChange={this.updatePassword} />
-            </div>
-            <div>
-              <input type="submit" value="Log in" />
-            </div>
-          </form>
-        </div>
-      );
-    };
+  if ( loggedIn ) {
+    return (
+      <Redirect
+        to={{
+          pathname: '/',
+          state: { from: props.location }
+        }}
+      />
+    );
+  } else {
+    return (
+      <div>
+        <h1>Login</h1>
+        <form onSubmit={submit}>
+          <div>
+            <label>Username: </label>
+            <input type="text" name="username" pattern=".{2,16}" required onChange={updateUsername} />
+          </div>
+          <div>
+            <label>Password: </label>
+            <input type="password" name="password" required onChange={updatePassword} />
+          </div>
+          <div>
+            <input type="submit" value="Log in" />
+          </div>
+        </form>
+      </div>
+    );
   };
 };
+
+export default withRouter(Login);
