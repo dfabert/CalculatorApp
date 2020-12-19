@@ -16,10 +16,13 @@
   );
   padding: 11px 30px;
   display: inline-block;
-
   position: fixed;
   top: 30%;
   left: 10%;
+  border-radius: 90px;
+  transition: all 0.3s;
+  box-shadow: 0 11px 25px rgba(0, 0, 0, 0.4);
+  //position: relative;
 }
 
 .randomButton:hover {
@@ -28,6 +31,31 @@
 
 .randomButton:active {
   transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.randomButton::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.randomButton:hover::after {
+  transform: scale(1.4);
+  background-image: linear-gradient(
+    to right,
+    rgb(186, 186, 215),
+    rgb(131, 131, 176)
+  );
+  transform: scaleX(1.3) scaleY(1.8);
+  opacity: 0;
 }
 
 .resetButton {
@@ -46,4 +74,40 @@
   position: fixed;
   top: 30%;
   left: 10%;
+  border-radius: 90px;
+  transition: all 0.3s;
+  box-shadow: 0 11px 25px rgba(0, 0, 0, 0.4);
+}
+
+.resetButton:hover {
+  transform: translateY(-5px);
+}
+
+.resetButton:active {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.resetButton::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.resetButton:hover::after {
+  transform: scale(1.4);
+  background-image: linear-gradient(
+    to right,
+    rgb(186, 186, 215),
+    rgb(131, 131, 176)
+  );
+  transform: scaleX(1.3) scaleY(1.8);
+  opacity: 0;
 }
