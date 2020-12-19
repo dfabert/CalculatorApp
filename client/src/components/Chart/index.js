@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Line, Bar, Doughnut } from 'react-chartjs-2';
+import { Line, Bar, Pie } from 'react-chartjs-2';
 
 export function LineChart(props) {
   useEffect(() => {},[props]);
@@ -58,12 +58,12 @@ export function BarChart(props) {
     );
   }
 
-export function Donut(props) {
+export function PieChart(props) {
     useEffect(() => {},[props]);
   
     return (
         <div>
-          <Doughnut
+          <Pie
             data={props.chartData}
             options={{
               title:{
