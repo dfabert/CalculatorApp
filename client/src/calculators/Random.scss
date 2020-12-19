@@ -1,31 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .randomButton {
-  grid-column: span 1;
-  background-color: rgb(122, 122, 177);
-  color: black;
-  padding: 1rem 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 1rem;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 100px;
-  text-align: center;
-  margin: 100px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 100;
+  font-size: 30px;
+  color: rgb(65, 62, 62);
+  background-image: linear-gradient(
+    to right,
+    rgb(186, 186, 215),
+    rgb(131, 131, 176)
+  );
+  
 }
 
 .resetButton {
-  grid-column: span 1;
-  background-color: rgb(122, 122, 177);
-  color: black;
-  padding: 1rem 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 1rem;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 100px;
-  text-align: center;
-  margin: 100px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 100;
+  font-size: 30px;
+  color: rgb(65, 62, 62);
+  background-image: linear-gradient(
+    to right,
+    rgb(186, 186, 215),
+    rgb(131, 131, 176)
+  );
 }

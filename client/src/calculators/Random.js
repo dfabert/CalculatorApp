@@ -11,12 +11,12 @@ import { use } from "passport";
 
 function Random(){
     
-    const[random, setRandom]=useState(0);
+    const[random, setRandom]=useState();
     var numMax = 10000;
     var numRandom = Math.floor((Math.random() * numMax) + 1);
     const[clicked, setClicked]=useState(false);
     function handleClick(){
-        //this.setState({this.state.random + this.Random})
+    
         
     }
     return (
@@ -24,10 +24,10 @@ function Random(){
             <h1>{random}</h1>
             {
                 clicked ?  <button className='resetButton'  onClick={()=>{
-                    setRandom(0);
+                    setRandom();
                     setClicked(false);       
                }}>
-                   No?  Try again?</button> : <button className='randomButton' value='Click me' onClick={()=>{ 
+                   Pick another?</button> : <button className='randomButton' value='Click me' onClick={()=>{ 
                     setRandom(Math.floor(Math.random() * 1000) + 1);
                     setClicked(true);
                 }}>What's your lucky number?</button>
