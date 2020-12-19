@@ -3,7 +3,7 @@ import './Savings.scss';
 import { Input, FormBtn } from "../components/Form";
 import Results from '../results/VerticalResults';
 import API from "../utils/API";
-import Chart from '../components/Graph_Line';
+import { LineChart } from '../components/Chart';
 
 
 function Savings() {
@@ -113,7 +113,7 @@ function Savings() {
       </form>
       <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
       <div>{total === 0 ? null : "$" + total}</div>
-      <Chart chartData={chartData} />
+      <LineChart chartData={chartData} />
       <Results doupdate={updateFlag} />
     </div>
   );

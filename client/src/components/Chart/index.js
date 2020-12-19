@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 
-function Chart(props) {
+export function LineChart(props) {
   useEffect(() => {},[props]);
 
  return (
@@ -24,4 +24,3 @@ function Chart(props) {
     )
   }
 
-  export default Chart;
