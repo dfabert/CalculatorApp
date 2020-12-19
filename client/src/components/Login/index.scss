@@ -1,7 +1,57 @@
-.loginContainer {
-    text-align: center;
+$color1: black;
+
+@mixin background-size($size) {
+    background-size: $size;
+      -webkit-background-size: $size;
+      -moz-background-size: $size;
+      -o-background-size: $size;
 }
 
-.userInput {
-    color: red;
+@mixin parallax-background($file) {
+    background: url($file) no-repeat center center fixed;
+    opacity: 80%;
+    @include background-size(cover);
+}
+
+.loginContainer {  
+    width: 50vw;
+    margin: auto;
+    margin-top: 10vh;
+    //opacity: 100%;
+    font-size: 4vh;
+    text-align: center;
+    color: $color1;
+    border : {
+        width: 5px;
+        radius: 5px;
+        style: solid;
+        color: $color1;
+    }
+    @include parallax-background("https://i.pinimg.com/564x/f2/b8/5d/f2b85d89ced925a7b60792152913a8e8.jpg");
+    @media (max-width: 768px) {
+        width: 100vw;
+    }
+
+
+    .userInput, .passwordInput {
+        margin : {
+            top: 20px; 
+            bottom: 10px;         
+        }     
+    }
+
+    .loginButton {
+        margin : {
+            top: 10px;
+            bottom: 20px;
+        }
+        color: white;
+        background-color:black;
+        font-size: 14px;
+        font-family: "montserrat";
+        text-decoration: none; 
+        border: 2px solid #c0f198;
+        padding: 14px 60px;
+        text-transform: uppercase;           
+    }
 }

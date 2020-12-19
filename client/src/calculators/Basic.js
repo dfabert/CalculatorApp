@@ -201,10 +201,8 @@ function Basic() {
             <Button key ={char} variant="secondary" onClick={() => enterChar(char)}>{char}</Button>
           );
         })}
-         <Button key = 'clear' variant="secondary" onClick={() => enterChar('clear')}>clear</Button>
-         <Button key = {equalsOn} variant="secondary" onClick={() => console.log({equalsOn, display, oppr, num1})}>console.log</Button>
-         <Results doupdate={updateFlag} />
-    </div>
+         <Button key = 'clear' variant="secondary" onClick={() => enterChar('clear')}>C</Button>
+         </div>
     </div>
       <aside className='sidebar'>
         <Results doupdate={updateFlag} />

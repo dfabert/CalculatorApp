@@ -66,15 +66,13 @@ export default class Login extends Component {
           <h1>Login</h1>
           <form onSubmit={this.submit.bind(this)}>
             <div className='userInput'>
-              <label>Username: </label>
-              <input type="text" name="username" pattern=".{2,16}" required onChange={this.updateUsername} />
+              <input type="text" name="username" placeholder="OmniUsername" pattern=".{2,16}" required onChange={this.updateUsername} />
             </div>
             <div className='passwordInput'>
-              <label>Password: </label>
-              <input type="password" name="password" required onChange={this.updatePassword} />
+              <input type="password" name="password" placeholder="Password" required onChange={this.updatePassword} />
             </div>
             <div>
-              <input type="submit" value="Log in" />
+              <input className='loginButton' type="submit" value="Log in" />
             </div>
           </form>
         </div>
