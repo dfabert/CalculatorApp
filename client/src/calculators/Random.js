@@ -27,10 +27,10 @@ function Random(){
                     setRandom(0);
                     setClicked(false);       
                }}>
-                   StartAgain</button> : <button className='randomButton' value='Click me' onClick={()=>{ 
+                   No?  Try again?</button> : <button className='randomButton' value='Click me' onClick={()=>{ 
                     setRandom(Math.floor(Math.random() * 1000) + 1);
                     setClicked(true);
-                }}>ClickMe</button>
+                }}>What's your lucky number?</button>
             }
             {}
         </div>
