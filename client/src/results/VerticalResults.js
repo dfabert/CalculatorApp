@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import API from "../utils/API";
 import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import './VerticalResults.scss';
 
 function Results(props) {
 
@@ -20,7 +21,7 @@ function Results(props) {
     }    
 
     return (
-        <Container fluid>
+        <aside fluid>
             <h3>Past Calculations</h3>
                 {display.length ? (
                     <List>
@@ -34,7 +35,7 @@ function Results(props) {
                 ) : (
                     <h5>No Calculations</h5>
                 )}
-        </Container>
+        </aside>
     )
 
 }

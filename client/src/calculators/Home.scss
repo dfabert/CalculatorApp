@@ -52,13 +52,7 @@ $font1: 'Montserrat', sans-serif;
     }
  }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: $font1;
-  color: #2e3738;
-}
+
 
 .title {
     color: rgb(190, 238, 78);
@@ -73,6 +67,7 @@ body {
     width: 5px;
     radius: 5px;
     style: solid;
+
   }
   perspective: 1px;
   transform: translateZ(-1px);
@@ -100,7 +95,7 @@ body {
 		text-transform: uppercase;
 	  	font-family: $font1;
 	  	letter-spacing: 0.06em;
-        font-size: 120px;  
+        font-size: 8vw;  
 	  	text-align: center;
         transform: translateZ(-1px);
 	}
@@ -111,9 +106,10 @@ p {
 	padding: 5%;
 	margin: $center-margin;
 	text-align: center;
-	font-size: 20px;
+	font-size: 2vw;
 	font-weight: 200;
-	line-height: 1.4;
+    line-height: 1.4;
+    color: black;
 }
 
 .title {
@@ -135,7 +131,7 @@ p {
 }
 
     .notecard {
-        width: 30%;
+        width: 29.5%;
         height: 180px;
         border: 1px solid black;
         display: inline-block;
@@ -157,11 +153,11 @@ p {
 
         .front {
             z-index: 3;
-            font-size: 20px;
+            font-size: 2vw;
             @include parallax-background("https://i.pinimg.com/474x/38/01/18/380118bacf2ee60e56c54fe1e450f740.jpg");
             color: rgb(190, 238, 78);
             border : {
-                width: 5px;
+                width: 2px;
                 radius: 5px;
                 style: solid;
             }
@@ -173,7 +169,7 @@ p {
                 @include hover-color(rgb(111, 202, 103));
                 color: rgb(190, 238, 78);
                 border : {
-                    width: 5px;
+                    width: 2px;
                     radius: 5px;
                     style: solid;
                 }
@@ -186,7 +182,7 @@ p {
             line-height: 1.6;
             background-color: black;
             opacity: 80%;
-            @include transform(rotatey(-180deg)); 
+             
         
             .definition {
                 margin : {
@@ -195,6 +191,7 @@ p {
                     top: 10%;
                 }
             text-align: center;
+            font-size: 1.3vw;
             color: rgb(190, 238, 78);
             border : {
                 width: 5px;
@@ -205,3 +202,4 @@ p {
         }
     }
 }
+
