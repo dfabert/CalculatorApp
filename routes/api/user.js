@@ -13,7 +13,10 @@ router.post('/', (req, res) => {
 
       req.login(user, (err) => {
         if (err) { console.log("errors and stuff", err) };
-        res.json(user)
+
+        const token = jwt.sign({id: req.user.id}, 'jwt_secret')
+
+        res.json({token, user})
       });
     }).catch((err) => {
       console.log(err);
