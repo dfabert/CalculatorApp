@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react';
-import { Line, Bar, Pie } from 'react-chartjs-2';
+import { Line, Bar, Doughnut } from 'react-chartjs-2';
 
 export function LineChart(props) {
   useEffect(() => {},[props]);
 
-  console.log(props.chartData);
-
- return (
+  return (
       <div>
         <Line
           data={props.chartData}
           options={{
             title:{
               display:true,
-              text:'Savings Over Time',
+              text:'',
               fontSize:20
             },
             legend:{
@@ -23,38 +21,13 @@ export function LineChart(props) {
           }}
         />
       </div>
-    )
+    );
   }
 
-  
-export function PieChart(props) {
-  useEffect(() => {},[props]);
-
- return (
-      <div>
-        <Pie
-          data={props.chartData}
-          options={{
-            title:{
-              display:true,
-              text:'Savings Over Time',
-              fontSize:20
-            },
-            legend:{
-              display:true,
-              position:'right'
-            }
-          }}
-        />
-      </div>
-    )
-  }
 
   
 export function BarChart(props) {
   useEffect(() => {},[props]);
-
-  console.log(props.chartData);
 
  return (
       <div>
@@ -82,8 +55,28 @@ export function BarChart(props) {
           }}
         />
       </div>
-    )
+    );
   }
 
+export function Donut(props) {
+    useEffect(() => {},[props]);
   
-
+    return (
+        <div>
+          <Doughnut
+            data={props.chartData}
+            options={{
+              title:{
+                display:true,
+                text:'',
+                fontSize:20
+              },
+              legend:{
+                display:true,
+                position:'left'
+              }
+            }}
+          />
+        </div>
+      );
+    }

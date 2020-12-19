@@ -1,7 +1,7 @@
 import React, { useState} from 'react';
 import Dropdown from '../components/Dropdown';
 import { Input, FormBtn } from '../components/Form'
-import { LineChart, PieChart, BarChart } from '../components/Chart'
+import { LineChart, BarChart, Donut } from '../components/Chart'
 
 const options = ['Bar Graph', 'Line Graph', 'Pie Chart'];
 
@@ -9,16 +9,16 @@ function Graph() {
 
     const [selected, setSelected] = useState(options[0]);
     const [yAxis, setYAxis] = useState('Enter Y Axis');
-    const [barObject, setBarObject] = useState([{
+    const [dataObject, setDataObject] = useState([{
         id: 0,
         label: 'first label',
         amount: 0
     }]);
     const [chartData, setChartData] = useState({});
 
-    const changeSize = (change) =>{
-        setBarObject([... barObject, {
-            id: barObject.length + 1,
+    const changeDataObjectSize = (change) =>{
+        setDataObject([...dataObject, {
+            id: dataObject.length + 1,
             label: 'new label',
             amount: 0
         }]);
@@ -28,34 +28,25 @@ function Graph() {
         console.log('index: ' + index);
         console.log('property name: '+ e.target.name);
         if(e.target.name === 'label'){
-            let newArr = [...barObject];
+            let newArr = [...dataObject];
             newArr[index].label = e.target.value; 
-            setBarObject(newArr)
+            setDataObject(newArr)
         }
         if(e.target.name === 'amount'){
-            let newArr = [...barObject];
+            let newArr = [...dataObject];
             newArr[index].amount = e.target.value; 
-            setBarObject(newArr)
+            setDataObject(newArr)
         }
     }
 
-    const handleFormSubmit = (event) =>{
+    const createGraph = (event) =>{
         event.preventDefault();
-        //create xAxisArray
         let xAxisArray = [];
-        for(let i = 0; i < barObject.length; i++){
-            xAxisArray.push(barObject[i].label)
-        }
-        //createbarArray
         let barValuesArray=[];
-        for(let i = 0; i < barObject.length; i++){
-            barValuesArray.push(barObject[i].amount)
+        for(let i = 0; i < dataObject.length; i++){
+            xAxisArray.push(dataObject[i].label);
+            barValuesArray.push(dataObject[i].amount);
         }
-
-        console.log(xAxisArray);
-        console.log(barValuesArray);
-        console.log(newData);
-
         let newData = {
             labels: xAxisArray,
             datasets:[
@@ -66,36 +57,57 @@ function Graph() {
             ]
         }
         setChartData(newData);
+    }
 
+    function DataEntry () {
+        return (
+            <div>
+                <form>
+                    {dataObject.map( (data, index) => {
+                        return (
+                          <div key={data.id}>
+                            <div key={data.label}>
+                            <Input type='text' name='label' value={data.label} onChange={updateFieldChange(index)}/>
+                            </div>
+                            <div key={data.amount} >
+                            <Input type='text' name='amount' value={data.amount} onChange={updateFieldChange(index)}/>
+                            </div>
+                          </div>
+                        );
+                    })}
+                  <FormBtn onClick={(event) => createGraph(event)}>Graph</FormBtn>
+                </form>
+            <FormBtn onClick={() => changeDataObjectSize('add')}>Add Data Field</FormBtn>
+            {/* <FormBtn onClick={() => changeSize('remove')}>Remove Data Field</FormBtn> */}
+        </div>
+        )
     }
 
     function BarGraph() {
         return (
         <div>
-            <form>
-                {barObject.map( (data, index) => {
-                    return (
-                        <div key={data.id}>
-                        <Input type='text' name='label' value={data.label} onChange={updateFieldChange(index)}/>
-                        <Input type='text' name='amount' value={data.amount} onChange={updateFieldChange(index)}/>
-                        </div>
-                    );
-                })}
-            </form>
-            <FormBtn onClick={() => changeSize('add')}>Add Data Field</FormBtn>
-            {/* <FormBtn onClick={() => changeSize('remove')}>Remove Data Field</FormBtn> */}
-            <FormBtn onClick={(event) => handleFormSubmit(event)}>Graph</FormBtn>
+            <DataEntry />
             <BarChart chartData={chartData} />
         </div>
         )
     }
 
     function LineGraph() {
-        return <h1>Line Graph</h1>
+        return (
+        <div>
+            <DataEntry />
+            <LineChart chartData={chartData} />
+        </div>
+        )
     }
 
     function PieChart() {
-        return <h1>Pie Chart</h1>
+        return (
+        <div>
+            <DataEntry />
+            <PieChart chartData={chartData} />
+        </div>
+        )
     }
 
     function renderPage() {
