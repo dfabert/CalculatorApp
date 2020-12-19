@@ -1,10 +1,9 @@
 import React, { useState} from 'react';
 import Dropdown from '../components/Dropdown';
 import { Input, FormBtn } from '../components/Form'
-
+import { LineChart, PieChart, BarChart } from '../components/Chart'
 
 const options = ['Bar Graph', 'Line Graph', 'Pie Chart'];
-
 
 function Graph() {
 
@@ -15,6 +14,7 @@ function Graph() {
         label: 'first label',
         amount: 0
     }]);
+    const [chartData, setChartData] = useState({});
 
     const changeSize = (change) =>{
         setBarObject([... barObject, {
@@ -32,12 +32,40 @@ function Graph() {
             newArr[index].label = e.target.value; 
             setBarObject(newArr)
         }
+        if(e.target.name === 'amount'){
+            let newArr = [...barObject];
+            newArr[index].amount = e.target.value; 
+            setBarObject(newArr)
+        }
     }
 
     const handleFormSubmit = (event) =>{
         event.preventDefault();
+        //create xAxisArray
+        let xAxisArray = [];
+        for(let i = 0; i < barObject.length; i++){
+            xAxisArray.push(barObject[i].label)
+        }
+        //createbarArray
+        let barValuesArray=[];
+        for(let i = 0; i < barObject.length; i++){
+            barValuesArray.push(barObject[i].amount)
+        }
 
+        console.log(xAxisArray);
+        console.log(barValuesArray);
+        console.log(newData);
 
+        let newData = {
+            labels: xAxisArray,
+            datasets:[
+              {
+                label:  'y-axis variable',
+                data:  barValuesArray
+              }
+            ]
+        }
+        setChartData(newData);
 
     }
 
@@ -56,8 +84,8 @@ function Graph() {
             </form>
             <FormBtn onClick={() => changeSize('add')}>Add Data Field</FormBtn>
             {/* <FormBtn onClick={() => changeSize('remove')}>Remove Data Field</FormBtn> */}
-            <FormBtn onClick={handleFormSubmit}>Graph</FormBtn>
-            {/* <Chart chartData={chartData} /> */}
+            <FormBtn onClick={(event) => handleFormSubmit(event)}>Graph</FormBtn>
+            <BarChart chartData={chartData} />
         </div>
         )
     }
