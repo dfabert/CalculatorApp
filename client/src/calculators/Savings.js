@@ -3,7 +3,7 @@ import './Savings.scss';
 import { Input, FormBtn } from "../components/Form";
 import Results from '../results/VerticalResults';
 import API from "../utils/API";
-import Chart from '../components/Chart';
+import Chart from '../components/Graph_Line';
 
 
 function Savings() {

@@ -30,6 +30,9 @@ function NavTabs() {
         <li className="nav-item active"> 
           <Nav.Link as={Link} to="/Currency">Currency</Nav.Link>
         </li>
+        <li className="nav-item active"> 
+        <Nav.Link as={Link} to="/Graph">Graphs</Nav.Link>
+        </li>
       </ul>
       <ul className="navbar-nav ml-auto">
         <li className="nav-item active">
