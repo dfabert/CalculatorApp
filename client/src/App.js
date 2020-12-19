@@ -11,6 +11,7 @@ import Budget from './calculators/Budget';
 import Currency from './calculators/Currency';
 import './app.scss';
 import UserContext from "./utils/UserContext";
+import Graph from "./calculators/Graph";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
           <Route exact path = '/Financial/Budget' component={Budget} />
           <Route exact path = '/Currency' component={Currency} />
           <Route exact path = "/signup" component={() => <Signup changeID={changeID} />} />
+          <Route exact path = '/graph' component={Graph}/>
         </div>
       </Router>
     </UserContext.Provider>
