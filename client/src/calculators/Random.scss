@@ -14,7 +14,20 @@
     rgb(186, 186, 215),
     rgb(131, 131, 176)
   );
-  
+  padding: 11px 30px;
+  display: inline-block;
+
+  position: fixed;
+  top: 30%;
+  left: 10%;
+}
+
+.randomButton:hover {
+  transform: translateY(-5px);
+}
+
+.randomButton:active {
+  transform: translateY(-2px);
 }
 
 .resetButton {
@@ -27,4 +40,10 @@
     rgb(186, 186, 215),
     rgb(131, 131, 176)
   );
+  padding: 11px 30px;
+  display: inline-block;
+
+  position: fixed;
+  top: 30%;
+  left: 10%;
 }
