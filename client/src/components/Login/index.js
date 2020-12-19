@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import isAuthenticated from '../../lib/isAuthenticated';
+import './index.scss';
 
 export default class Login extends Component {
   
@@ -61,14 +62,14 @@ export default class Login extends Component {
       );
     } else {
       return (
-        <div>
+        <div className='loginContainer'>
           <h1>Login</h1>
           <form onSubmit={this.submit.bind(this)}>
-            <div>
+            <div className='userInput'>
               <label>Username: </label>
               <input type="text" name="username" pattern=".{2,16}" required onChange={this.updateUsername} />
             </div>
-            <div>
+            <div className='passwordInput'>
               <label>Password: </label>
               <input type="password" name="password" required onChange={this.updatePassword} />
             </div>
