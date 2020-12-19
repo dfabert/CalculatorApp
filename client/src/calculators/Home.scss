@@ -11,7 +11,7 @@ $font1: 'Montserrat', sans-serif;
 
 @mixin parallax-background($file) {
   background: url($file) no-repeat center center fixed;
-  opacity: 80%;
+  opacity: .8;
   @include background-size(cover);
 }
 
@@ -51,8 +51,6 @@ $font1: 'Montserrat', sans-serif;
         color: $color;
     }
  }
-
-
 
 .title {
     color: rgb(190, 238, 78);
@@ -181,7 +179,7 @@ p {
             word-wrap: break-word;
             line-height: 1.6;
             background-color: black;
-            opacity: 80%;
+            opacity: .8;
              
         
             .definition {
