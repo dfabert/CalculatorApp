@@ -3,7 +3,7 @@ import './Savings.scss';
 import { Input, FormBtn } from "../components/Form";
 import Results from '../results/VerticalResults';
 import API from "../utils/API";
-import Chart from '../components/Chart';
+import { LineChart } from '../components/Chart';
 
 
 function Savings() {
@@ -36,12 +36,26 @@ function Savings() {
   };
 
   function createChartData() {
+      //Create array for labels
+      let timeArray = [];
+      let savingsArray = [];
+
+      for(let i = 0; i < t; i++){
+        timeArray.push(i+1);
+
+        let n = 12;
+        let rate = r/100
+        const amount = p * (Math.pow((1 + (rate / n)), (n * i+1)));
+
+        savingsArray.push(amount);
+      }
+
       let newData = {
-        labels:['start', 'end'],
+        labels: timeArray,
         datasets:[
           {
-            label:'savings',
-            data:[p,total]
+            label:'savings at ' + r + '%',
+            data: savingsArray
           }
         ]
       }
@@ -54,7 +68,8 @@ function Savings() {
       // n = 12 for monthly compound
       let n = 12;
       let rate = r/100
-      const amount = p * (Math.pow((1 + (rate / n)), (n * t)));
+      let amount = p * (Math.pow((1 + (rate / n)), (n * t)));
+      amount = amount.toFixed(2);
       setTotal(amount);
 
       let equation = 'Principal: $' + p + '    Rate: ' + r + '%    Years: ' + t ;
@@ -96,9 +111,9 @@ function Savings() {
           Calculate!
         </FormBtn>
       </form>
-      <div>Your savings at the end of {t} years</div>
-      <div>${total}</div>
-      <Chart chartData={chartData} />
+      <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
+      <div>{total === 0 ? null : "$" + total}</div>
+      <LineChart chartData={chartData} />
       <Results doupdate={updateFlag} />
     </div>
   );

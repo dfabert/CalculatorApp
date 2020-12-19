@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import isAuthenticated from '../../lib/isAuthenticated';
+import './index.scss';
 
 function Login(props) {
 
@@ -35,6 +36,7 @@ function Login(props) {
   const updateUsername = (e) => setUsername(e.target.value);
   const updatePassword = (e) => setPassword(e.target.value);
 
+
   if ( loggedIn ) {
     return (
       <Redirect
@@ -63,6 +65,7 @@ function Login(props) {
         </form>
       </div>
     );
+
   };
 };
 
