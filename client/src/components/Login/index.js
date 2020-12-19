@@ -36,7 +36,6 @@ function Login(props) {
   const updateUsername = (e) => setUsername(e.target.value);
   const updatePassword = (e) => setPassword(e.target.value);
 
-
   if ( loggedIn ) {
     return (
       <Redirect
@@ -65,7 +64,6 @@ function Login(props) {
         </form>
       </div>
     );
-
   };
 };
 

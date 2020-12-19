@@ -21,7 +21,7 @@ function Results(props) {
     }    
 
     return (
-        <aside fluid>
+        <div>
             <h3>Past Calculations</h3>
                 {display.length ? (
                     <List>
@@ -35,7 +35,7 @@ function Results(props) {
                 ) : (
                     <h5>No Calculations</h5>
                 )}
-        </aside>
+        </div>
     )
 
 }

@@ -9,24 +9,15 @@ $color1: black;
 
 @mixin parallax-background($file) {
     background: url($file) no-repeat center center fixed;
-    opacity: 80%;
+    opacity: .8;
     @include background-size(cover);
 }
 
-body {
-    border-top: {
-        color: black;
-        style: solid;
-        width: 5px;
-    }
-}
-
 .container{
-    width: 5em;
-    margin : {
-        top: 10%;
-    }
-    opacity: 100%;
+    width: 50vw;
+    margin: auto;
+    margin-top: 10vh;
+    opacity: 1;
     font-size: 4vh;
     text-align: center;
     color: $color1;
@@ -35,46 +26,13 @@ body {
         radius: 5px;
         style: solid;
         color: $color1;
-        
-        
     }
     @include parallax-background("https://i.pinimg.com/564x/f2/b8/5d/f2b85d89ced925a7b60792152913a8e8.jpg");
-
-    
-    form {
-        margin : 5%;
-        
+    @media (max-width: 768px) {
+        width: 100vw;
     }
+
 }
 
-#signup {
-    width: 550px;
-    height: 330px;
-    margin: 100px auto 50px auto;
-    padding: 20px;
-    position: relative;
-    background: #fff url(data:image/png;base64,iVBORw0K[...]CYII=);
-    border: 1px solid #ccc;
-    border-radius: 3px;  
 
 
-    :before, :after {
-        content: "";
-        position: absolute;
-        bottom: -3px;
-        left: 2px;
-        right: 2px;
-        top: 0;
-        z-index: -1;
-        background: #fff;
-        border: 1px solid #ccc;         
-    }
-
-    :after {
-        left: 4px;
-        right: 4px;
-        bottom: -5px;
-        z-index: -2;
-        box-shadow: 0 8px 8px -5px rgba(0,0,0,.3);
-    }
-}
