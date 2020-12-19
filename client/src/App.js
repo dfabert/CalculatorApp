@@ -34,7 +34,7 @@ function App() {
   return (
     <UserContext.Provider value={appState}>
       <Router>
-        <div>
+        <div className='app'>
           <NavTabs />
           <Route exact path = '/' component={Home} />
           <Route exact path = '/login' component={Login}/>

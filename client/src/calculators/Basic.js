@@ -8,6 +8,7 @@ import UserContext from '../utils/UserContext';
 function Basic() {
 
 
+
   const buttonChars = ['1','2','3','+','4','5','6','-','7','8','9','x','.','0','=',"/"];
   const [display, setDisplay] = useState('');
   const [num1, setNum1] = useState(0);
@@ -189,9 +190,10 @@ function Basic() {
     }
   };
   
-  return (    
+  return ( 
+    <div className='basicPage'> 
+      <title>Basic Calculator</title> 
     <div className='calculatorContainer'>
-      <title>Basic Calculator</title>
       <div className='calculator-screen'>{display === '' ? num1 : display  } </div>
       <div className='calculatorInputs'>
         {buttonChars.map(char => {
@@ -199,11 +201,16 @@ function Basic() {
             <Button key ={char} variant="secondary" onClick={() => enterChar(char)}>{char}</Button>
           );
         })}
-      </div>
-      <Button key = 'clear' variant="secondary" onClick={() => enterChar('clear')}>clear</Button>
-      <Button key = {equalsOn} variant="secondary" onClick={() => console.log({equalsOn, display, oppr, num1})}>console.log</Button>
-      <Results doupdate={updateFlag} />
+         <Button key = 'clear' variant="secondary" onClick={() => enterChar('clear')}>clear</Button>
+         <Button key = {equalsOn} variant="secondary" onClick={() => console.log({equalsOn, display, oppr, num1})}>console.log</Button>
+         <Results doupdate={updateFlag} />
     </div>
+    </div>
+      <aside className='sidebar'>
+        <Results doupdate={updateFlag} />
+      </aside>
+    </div>
+
   );
   
 }
