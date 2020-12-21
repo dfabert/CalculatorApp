@@ -20,7 +20,7 @@ function Results(props) {
                     setDisplay(filtered.reverse().slice(0,Math.min(5,filtered.length)));
                 })
                 .catch(err => console.log(err)); 
-    },[props]);
+    },[props, id]);
 
     return (
         <div>

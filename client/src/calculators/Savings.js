@@ -18,16 +18,19 @@ function Savings() {
   const id = localStorage.getItem('user');
 
   useEffect(() => {
+    createChart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[total]);
+
+  function createChart() {
     let timeArray = [];
     let savingsArray = [];
 
     for(let i = 0; i < t; i++){
       timeArray.push(i+1);
-
       let n = 12;
       let rate = r/100
       const amount = p * (Math.pow((1 + (rate / n)), (n * i+1)));
-
       savingsArray.push(amount);
     }
 
@@ -41,7 +44,7 @@ function Savings() {
       ]
     }
     setChartData(newData);
-  },[total]);
+  }
 
   function handlePrincipalChange(event){
       const { value } = event.target;

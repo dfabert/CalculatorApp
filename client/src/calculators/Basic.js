@@ -12,16 +12,14 @@ function Basic() {
   const [equalsOn, setEqualsOn] = useState([false, null, '']);  //was equals last oppr?
   const [updateFlag, setUpdateFlag] = useState(false);
   const [equationString, setEquationString] = useState('');
-
-
   const id = localStorage.getItem('user');
 
   useEffect(() => {
-    saveThisCalculation();
+    saveCalculation()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[num1]);
 
-
-  const saveThisCalculation = () => {;
+  function saveCalculation() {
     if (equationString !== ''){     
       API.saveCalculation({
         equation:  equationString,
@@ -33,6 +31,7 @@ function Basic() {
       }).catch(err => console.log(err));
     }
   }
+
 
   const enterChar = char => {
     //addition
