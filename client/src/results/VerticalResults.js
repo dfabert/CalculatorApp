@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import API from "../utils/API";
 import { List, ListItem } from "../components/List";
 import './VerticalResults.scss';
@@ -9,22 +9,34 @@ function Results(props) {
     const [display, setDisplay] = useState([]);
 
     useEffect(() => {
-        loadCalculations()
+            API.getCalculations()
+                .then(res =>{
+                    let filtered = [];
+                    if(id === 'default'){
+                        filtered = res.data;
+                    } else {
+                        filtered = res.data.filter(calculation => calculation.userId === id);
+                    }
+                    setDisplay(filtered.reverse().slice(0,Math.min(5,filtered.length)));
+                })
+                .catch(err => console.log(err)); 
     },[props]);
 
-    const loadCalculations = () => {
-        API.getCalculations()
-            .then(res =>{
-                let filtered = [];
-                if(id === 'default'){
-                    filtered = res.data;
-                } else {
-                    filtered = res.data.filter(calculation => calculation.userId === id);
-                }
-                setDisplay(filtered.reverse().slice(0,Math.min(5,filtered.length)));
-            })
-            .catch(err => console.log(err));
-    }    
+    // const loadCalculations = () => {
+    //     API.getCalculations()
+    //         .then(res =>{
+    //             let filtered = [];
+    //             if(id === 'default'){
+    //                 filtered = res.data;
+    //             } else {
+    //                 filtered = res.data.filter(calculation => calculation.userId === id);
+    //             }
+    //             setDisplay(filtered.reverse().slice(0,Math.min(5,filtered.length)));
+    //         })
+    //         .catch(err => console.log(err));
+    // }    
+
+
 
     return (
         <div>

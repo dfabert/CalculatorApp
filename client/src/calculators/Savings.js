@@ -76,10 +76,6 @@ function Savings() {
       let equation = 'Principal: $' + p + '    Rate: ' + r + '%    Years: ' + t ;
       let amountString = '$' + amount.toString();
 
-      console.log(equation);
-      console.log(amountString);
-      console.log(id);
-
       API.saveCalculation({
         equation:  equation,
         result:  amountString,
