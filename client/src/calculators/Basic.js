@@ -6,9 +6,6 @@ import API from "../utils/API";
 import UserContext from '../utils/UserContext';
 
 function Basic() {
-
-
-
   const buttonChars = ['1','2','3','+','4','5','6','-','7','8','9','x','.','0','=',"/"];
   const [display, setDisplay] = useState('');
   const [num1, setNum1] = useState(0);
@@ -193,6 +190,7 @@ function Basic() {
   return ( 
     <div className='basicPage'> 
       <title>Basic Calculator</title> 
+      {id}
     <div className='calculatorContainer'>
       <div className='calculator-screen'>{display === '' ? num1 : display  } </div>
       <div className='calculatorInputs'>

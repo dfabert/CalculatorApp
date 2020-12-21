@@ -38,7 +38,7 @@ function App() {
         <div className='app'>
           <NavTabs />
           <Route exact path = '/' component={Home} />
-          <Route exact path = '/login' component={Login}/>
+          <Route exact path = '/login' component={() => <Login changeID={changeID} />}/>
           <Route exact path = '/logout' component={Logout}/>
           <Route exact path = '/basic' component={Basic} />
           <Route exact path = '/Financial/Savings' component={Savings} />

@@ -3,7 +3,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 import isAuthenticated from '../../lib/isAuthenticated';
 import './index.scss';
 
-function Login(props) {
+function Login({ changeID, props }) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -23,11 +23,12 @@ function Login(props) {
       },
       body: JSON.stringify({username, password})
     }).then( (res) => {
-      return res.json()
+      return res.json();
     }).then(data => {
       console.log(data);
-      localStorage.setItem('token', data.token)
-      setLoggedIn(true)
+      localStorage.setItem('token', data.token);
+      changeID(data.user);
+      setLoggedIn(true);
     }).catch( (err) => {
       console.error(err)
     });
@@ -40,8 +41,7 @@ function Login(props) {
     return (
       <Redirect
         to={{
-          pathname: '/',
-          state: { from: props.location }
+          pathname: '/'
         }}
       />
     );
