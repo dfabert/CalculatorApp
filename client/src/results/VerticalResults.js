@@ -22,22 +22,6 @@ function Results(props) {
                 .catch(err => console.log(err)); 
     },[props]);
 
-    // const loadCalculations = () => {
-    //     API.getCalculations()
-    //         .then(res =>{
-    //             let filtered = [];
-    //             if(id === 'default'){
-    //                 filtered = res.data;
-    //             } else {
-    //                 filtered = res.data.filter(calculation => calculation.userId === id);
-    //             }
-    //             setDisplay(filtered.reverse().slice(0,Math.min(5,filtered.length)));
-    //         })
-    //         .catch(err => console.log(err));
-    // }    
-
-
-
     return (
         <div>
             <h3>{id === 'default' ? 'Recent calculations by all users:' : "Your recent calculations:  " }</h3>
