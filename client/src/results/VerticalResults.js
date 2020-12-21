@@ -15,9 +15,12 @@ function Results(props) {
     const loadCalculations = () => {
         API.getCalculations()
             .then(res =>{
-                console.log(res.data);
-                let filtered = res.data.filter(calculation => calculation.userId === id);
-                console.log(id, filtered);
+                let filtered = [];
+                if(id === 'default'){
+                    filtered = res.data;
+                } else {
+                    filtered = res.data.filter(calculation => calculation.userId === id);
+                }
                 setDisplay(filtered.reverse().slice(0,Math.min(5,filtered.length)));
             })
             .catch(err => console.log(err));
@@ -25,7 +28,7 @@ function Results(props) {
 
     return (
         <div>
-            <h3>Past Calculations</h3>
+            <h3>{id === 'default' ? 'Recent calculations by all users:' : "Your recent calculations:  " }</h3>
                 {display.length ? (
                     <List>
                         {display.map(calculation => (

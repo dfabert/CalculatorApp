@@ -16,6 +16,12 @@ import Graph from "./calculators/Graph";
 
 function App() {
 
+  let id = localStorage.getItem('user');
+
+  if(id === null){
+    localStorage.setItem('user', 'default');
+  }
+
   return (
       <Router>
         <div className='app'>

@@ -93,7 +93,6 @@ function Savings() {
 
   return (
     <div>
-      <div>{id}</div>
       Savings Calculator
       <form>
         Principal:  
@@ -120,7 +119,7 @@ function Savings() {
       </form>
       <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
       <div>{total === 0 ? null : "$" + total}</div>
-      {/* <LineChart chartData={chartData} /> */}
+      <LineChart chartData={chartData} />
       <Results doupdate={updateFlag} />
     </div>
   );
