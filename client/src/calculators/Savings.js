@@ -84,7 +84,7 @@ function Savings() {
         equation:  equation,
         result:  amountString,
         calculator:  'Savings',
-        userId: 'default'
+        userId: id
       }).then(() => {
           setUpdateFlag(!updateFlag);
       }).catch(err => console.log(err));
