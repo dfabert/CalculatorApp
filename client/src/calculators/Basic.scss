@@ -1,16 +1,24 @@
 .basicPage {
-    background-color: rgb(12, 12, 12);
+    background-color: white;
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: center;  
+    @media (max-width: 375px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
-.calculatorContainer {
+.wrapper {
     order: 2;
-    justify-self: center;
-    align-self: center;
-    margin-right: auto;
+    @media (max-width: 375px) {
+        order: 2;
+    }
+}
+
+
+.calculatorContainer {
     width: 300px;
     height: 400px;
     color: black;
@@ -53,8 +61,12 @@
 .sidebar { 
     order: 1;  
     padding: 2%;
-    margin-right: auto;
+    margin-right: 5%;
+    margin-left: 5%;
     color: white;
+    @media (max-width: 375px) {
+        order: 2;
+    }
 }
 
 

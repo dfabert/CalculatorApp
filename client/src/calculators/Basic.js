@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import './Basic.scss';
 import API from "../utils/API";
 import UserContext from '../utils/UserContext';
+import Wrapper from '../components/Wrapper';
 
 function Basic() {
 
@@ -193,6 +194,7 @@ function Basic() {
   return ( 
     <div className='basicPage'> 
       <title>Basic Calculator</title> 
+    <Wrapper>
     <div className='calculatorContainer'>
       <div className='calculator-screen'>{display === '' ? num1 : display  } </div>
       <div className='calculatorInputs'>
@@ -204,6 +206,7 @@ function Basic() {
          <Button key = 'clear' variant="secondary" onClick={() => enterChar('clear')}>C</Button>
          </div>
     </div>
+    </Wrapper>
       <aside className='sidebar'>
         <Results doupdate={updateFlag} />
       </aside>

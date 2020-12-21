@@ -1,0 +1,14 @@
+.wrapper {
+    padding: 7vw;
+    background-color: white;
+    height: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: flex-start;
+    overflow: auto;
+    @media (max-width: 375px) {
+        height: auto;
+        padding-bottom: 20px;
+    }
+  }
