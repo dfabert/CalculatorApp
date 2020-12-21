@@ -1,28 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import API from "../utils/API";
-import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import './VerticalResults.scss';
 
 function Results(props) {
 
+    const id = localStorage.getItem('user');
     const [display, setDisplay] = useState([]);
 
     useEffect(() => {
-        loadCalculations()
-    },[props]);
-
-    const loadCalculations = () => {
-        API.getCalculations()
-            .then(res =>{
-                setDisplay(res.data.reverse().slice(0,Math.min(5,res.data.length)))
-            })
-            .catch(err => console.log(err));
-    }    
+            API.getCalculations()
+                .then(res =>{
+                    let filtered = [];
+                    if(id === 'default'){
+                        filtered = res.data;
+                    } else {
+                        filtered = res.data.filter(calculation => calculation.userId === id);
+                    }
+                    setDisplay(filtered.reverse().slice(0,Math.min(5,filtered.length)));
+                })
+                .catch(err => console.log(err)); 
+    },[props, id]);
 
     return (
         <div>
-            <h3>Past Calculations</h3>
+            <h3>{id === 'default' ? 'Recent calculations by all users:' : "Your recent calculations:  " }</h3>
                 {display.length ? (
                     <List>
                         {display.map(calculation => (

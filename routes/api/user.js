@@ -30,7 +30,7 @@ router.post('/login', passport.authenticate('local', {
   // Token
   const token = jwt.sign({id: req.user.id}, 'jwt_secret')
 
-  res.json({token: token})
+  res.json({token: token, user:req.user.id})
   
 
 })

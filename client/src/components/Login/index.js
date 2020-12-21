@@ -23,11 +23,12 @@ function Login(props) {
       },
       body: JSON.stringify({username, password})
     }).then( (res) => {
-      return res.json()
+      return res.json();
     }).then(data => {
       console.log(data);
-      localStorage.setItem('token', data.token)
-      setLoggedIn(true)
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', data.user);
+      setLoggedIn(true);
     }).catch( (err) => {
       console.error(err)
     });
@@ -40,8 +41,7 @@ function Login(props) {
     return (
       <Redirect
         to={{
-          pathname: '/',
-          state: { from: props.location }
+          pathname: '/'
         }}
       />
     );

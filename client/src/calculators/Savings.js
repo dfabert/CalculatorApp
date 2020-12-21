@@ -5,7 +5,6 @@ import Results from '../results/VerticalResults';
 import API from "../utils/API";
 import { LineChart } from '../components/Chart';
 
-
 function Savings() {
   //For now, compound monthly
 
@@ -16,9 +15,36 @@ function Savings() {
   const [updateFlag, setUpdateFlag] = useState(false);
   const [chartData, setChartData] = useState({});
 
+  const id = localStorage.getItem('user');
+
   useEffect(() => {
-    createChartData();
+    createChart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[total]);
+
+  function createChart() {
+    let timeArray = [];
+    let savingsArray = [];
+
+    for(let i = 0; i < t; i++){
+      timeArray.push(i+1);
+      let n = 12;
+      let rate = r/100
+      const amount = p * (Math.pow((1 + (rate / n)), (n * i+1)));
+      savingsArray.push(amount);
+    }
+
+    let newData = {
+      labels: timeArray,
+      datasets:[
+        {
+          label:'savings at ' + r + '%',
+          data: savingsArray
+        }
+      ]
+    }
+    setChartData(newData);
+  }
 
   function handlePrincipalChange(event){
       const { value } = event.target;
@@ -34,33 +60,6 @@ function Savings() {
     const { value } = event.target;
     setTime(value);
   };
-
-  function createChartData() {
-      //Create array for labels
-      let timeArray = [];
-      let savingsArray = [];
-
-      for(let i = 0; i < t; i++){
-        timeArray.push(i+1);
-
-        let n = 12;
-        let rate = r/100
-        const amount = p * (Math.pow((1 + (rate / n)), (n * i+1)));
-
-        savingsArray.push(amount);
-      }
-
-      let newData = {
-        labels: timeArray,
-        datasets:[
-          {
-            label:'savings at ' + r + '%',
-            data: savingsArray
-          }
-        ]
-      }
-      setChartData(newData);
-  }
 
   function handleFormSubmit(event) {
     event.preventDefault();
@@ -78,7 +77,8 @@ function Savings() {
       API.saveCalculation({
         equation:  equation,
         result:  amountString,
-        calculator:  'Savings'
+        calculator:  'Savings',
+        userId: id
       }).then(() => {
           setUpdateFlag(!updateFlag);
       }).catch(err => console.log(err));
