@@ -3,7 +3,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 import isAuthenticated from '../../lib/isAuthenticated';
 import './index.scss';
 
-function Login({ changeID, props }) {
+function Login(props) {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +27,7 @@ function Login({ changeID, props }) {
     }).then(data => {
       console.log(data);
       localStorage.setItem('token', data.token);
-      changeID(data.user);
+      localStorage.setItem('user', data.user);
       setLoggedIn(true);
     }).catch( (err) => {
       console.error(err)

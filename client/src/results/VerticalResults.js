@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import API from "../utils/API";
-import { Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import './VerticalResults.scss';
 
 function Results(props) {
 
+    const id = localStorage.getItem('user');
     const [display, setDisplay] = useState([]);
 
     useEffect(() => {
@@ -15,7 +15,10 @@ function Results(props) {
     const loadCalculations = () => {
         API.getCalculations()
             .then(res =>{
-                setDisplay(res.data.reverse().slice(0,Math.min(5,res.data.length)))
+                console.log(res.data);
+                let filtered = res.data.filter(calculation => calculation.userId === id);
+                console.log(id, filtered);
+                setDisplay(filtered.reverse().slice(0,Math.min(5,filtered.length)));
             })
             .catch(err => console.log(err));
     }    

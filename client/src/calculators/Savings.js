@@ -1,11 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import './Savings.scss';
 import { Input, FormBtn } from "../components/Form";
 import Results from '../results/VerticalResults';
 import API from "../utils/API";
 import { LineChart } from '../components/Chart';
-import UserContext from '../utils/UserContext';
-
 
 function Savings() {
   //For now, compound monthly
@@ -17,7 +15,7 @@ function Savings() {
   const [updateFlag, setUpdateFlag] = useState(false);
   const [chartData, setChartData] = useState({});
 
-  const { id } = useContext(UserContext);
+  const id = localStorage.getItem('user');
 
   useEffect(() => {
     createChartData();
@@ -95,6 +93,7 @@ function Savings() {
 
   return (
     <div>
+      <div>{id}</div>
       Savings Calculator
       <form>
         Principal:  
@@ -121,7 +120,7 @@ function Savings() {
       </form>
       <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
       <div>{total === 0 ? null : "$" + total}</div>
-      <LineChart chartData={chartData} />
+      {/* <LineChart chartData={chartData} /> */}
       <Results doupdate={updateFlag} />
     </div>
   );

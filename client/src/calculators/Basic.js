@@ -1,9 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Results from '../results/VerticalResults';
 import Button from 'react-bootstrap/Button';
 import './Basic.scss';
 import API from "../utils/API";
-import UserContext from '../utils/UserContext';
 
 function Basic() {
   const buttonChars = ['1','2','3','+','4','5','6','-','7','8','9','x','.','0','=',"/"];
@@ -15,7 +14,7 @@ function Basic() {
   const [equationString, setEquationString] = useState('');
 
 
-  const { id } = useContext(UserContext);
+  const id = localStorage.getItem('user');
 
   useEffect(() => {
     saveThisCalculation();
