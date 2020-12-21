@@ -27,7 +27,8 @@ function Basic() {
       API.saveCalculation({
         equation:  equationString,
         result:  num1,
-        calculator:  'Basic'
+        calculator:  'Basic',
+        userId: id
       }).then(() => {
           setUpdateFlag(!updateFlag);
       }).catch(err => console.log(err));

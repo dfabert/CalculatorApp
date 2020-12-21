@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import './Savings.scss';
 import { Input, FormBtn } from "../components/Form";
 import Results from '../results/VerticalResults';
 import API from "../utils/API";
 import { LineChart } from '../components/Chart';
+import UserContext from '../utils/UserContext';
 
 
 function Savings() {
@@ -15,6 +16,8 @@ function Savings() {
   const [total, setTotal] = useState(0);
   const [updateFlag, setUpdateFlag] = useState(false);
   const [chartData, setChartData] = useState({});
+
+  const { id } = useContext(UserContext);
 
   useEffect(() => {
     createChartData();
@@ -75,10 +78,15 @@ function Savings() {
       let equation = 'Principal: $' + p + '    Rate: ' + r + '%    Years: ' + t ;
       let amountString = '$' + amount.toString();
 
+      console.log(equation);
+      console.log(amountString);
+      console.log(id);
+
       API.saveCalculation({
         equation:  equation,
         result:  amountString,
-        calculator:  'Savings'
+        calculator:  'Savings',
+        userId: 'default'
       }).then(() => {
           setUpdateFlag(!updateFlag);
       }).catch(err => console.log(err));
