@@ -190,7 +190,6 @@ function Basic() {
   return ( 
     <div className='basicPage'> 
       <title>Basic Calculator</title> 
-      {id}
     <div className='calculatorContainer'>
       <div className='calculator-screen'>{display === '' ? num1 : display  } </div>
       <div className='calculatorInputs'>
