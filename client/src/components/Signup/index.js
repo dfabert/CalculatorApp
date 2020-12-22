@@ -34,13 +34,13 @@ function SignupForm({ changeID, history }) {
 
     
         return (
-            <div className='container'>
+            <div className='signupPage'>  
                 <form id='signup' onSubmit={handleSubmit}>
-                    <h1>Sign Up for OmniCalculator</h1>
-                    <input type="text" name="username" placeholder="OmniUsername" onChange={updateUsername} />
-                    <input type="password" name="password" placeholder="Password" onChange={updatePassword} />
+                    <header>Sign Up for OmniCalculator</header>
+                    <input className='userInput' type="text" name="username" placeholder="OmniUsername" onChange={updateUsername} />
+                    <input className='passwordInput' type="password" name="password" placeholder="Password" onChange={updatePassword} />
                     <br></br>
-                    <input type="submit" value="Submit" />
+                    <input className='submit' type="submit" value="Submit" />
                 </form>
             </div>);
     

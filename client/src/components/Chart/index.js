@@ -6,7 +6,7 @@ export function LineChart(props) {
   useEffect(() => {},[props]);
 
   return (
-      <div className='lineChart'>
+      <div className='line'>
         <Line
           data={props.chartData}
           options={{

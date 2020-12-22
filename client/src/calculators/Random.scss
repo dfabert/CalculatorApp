@@ -1,18 +1,33 @@
+.App {
+  display: flex;
+  align-items: center;
+}
+
+.randomPage {
+  border: 20px solid;
+    border-image-source: linear-gradient(45deg, rgb(12, 12, 12), rgb(137, 138, 137));
+    border-image-slice: 1;
+    @media (min-width: 376px), (max-width: 768px) {
+       margin: 0;
+    }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
+
 .randomButton {
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: 100;
   font-size: 30px;
-  color: rgb(65, 62, 62);
+  color: black;
   background-image: linear-gradient(
     to right,
-    rgb(186, 186, 215),
-    rgb(131, 131, 176)
+    rgb(183, 224, 136),
+    rgb(134, 235, 39)
   );
-  padding: 11px 30px;
-  display: inline-block;
-  position: fixed;
-  top: 30%;
-  left: 10%;
+  padding: 10px 20px;
   border-radius: 90px;
   transition: all 0.3s;
   box-shadow: 0 11px 25px rgba(0, 0, 0, 0.4);
@@ -35,11 +50,9 @@
 
 .randomButton::after {
   content: "";
-  display: inline-block;
   height: 100%;
   width: 100%;
   border-radius: 100px;
-  position: absolute;
   top: 0;
   left: 0;
   z-index: -1;
@@ -52,8 +65,8 @@
   transform: scale(1.4);
   background-image: linear-gradient(
     to right,
-    rgb(186, 186, 215),
-    rgb(131, 131, 176)
+    rgb(194, 228, 163),
+    rgb(156, 214, 118)
   );
   transform: scaleX(1.3) scaleY(1.8);
   opacity: 0;
@@ -71,18 +84,13 @@
   font-family: Georgia, "Times New Roman", Times, serif;
   font-weight: 100;
   font-size: 30px;
-  color: rgb(65, 62, 62);
+  color: black;
   background-image: linear-gradient(
     to right,
-    rgb(186, 186, 215),
-    rgb(131, 131, 176)
+    rgb(183, 224, 136),
+    rgb(134, 235, 39)
   );
-  padding: 11px 30px;
-  display: inline-block;
-
-  position: fixed;
-  top: 30%;
-  left: 10%;
+  padding: 10px 20px;
   border-radius: 90px;
   transition: all 0.3s;
   box-shadow: 0 11px 25px rgba(0, 0, 0, 0.4);
@@ -102,19 +110,13 @@
   border: none;
   outline: none;
   border-color: #fff;
-  border: none;
-  outline: none;
 }
 
 .resetButton::after {
   content: "";
-  display: inline-block;
   height: 100%;
   width: 100%;
   border-radius: 100px;
-  position: absolute;
-  top: 0;
-  left: 0;
   z-index: -1;
   transition: all 0.3s;
   border-color: #fff;
@@ -138,4 +140,15 @@
 .resetButton:focus {
   border: none;
   outline: none;
+}
+
+h2 {
+  text-align: center;
+}
+
+.randomOutput {
+  font-size: 40px;
+  float: right;
+  display: inline;
+  text-align: center;
 }

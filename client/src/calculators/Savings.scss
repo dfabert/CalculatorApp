@@ -6,6 +6,14 @@
 }
 .savingsContainer {
     display: flex;
+    border : {
+        width: 2px;
+        color: black;
+        style: solid;
+        radius: 5%;
+    }
+    margin: 2%;
+    background-image: url(../img/savings.jpg);
 }
 
 .wrapper {
@@ -15,6 +23,21 @@
     }
     margin: auto;
     margin-right: 2%;
+}
+
+.calculateButton {
+    margin : {
+        top: 10px;
+        bottom: 20px;
+    }
+    color: white;
+    background-color:black;
+    font-size: 14px;
+    font-family: "montserrat";
+    text-decoration: none; 
+    border: 2px solid #c0f198;
+    padding: 14px 60px;
+    text-transform: uppercase;   
 }
 
 .sidebar { 
