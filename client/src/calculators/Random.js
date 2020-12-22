@@ -1,18 +1,13 @@
- 'use strict';
+'use strict';
 import React, { useState } from "react";
-import Results from '../results/VerticalResults';
-import Button from 'react-bootstrap/Button';
-
 import './Random.scss';
-import API from "../utils/API";
+import Wrapper from '../components/Wrapper';
 
-//import './random.scss';
-import { use } from "passport";
 
 function Random(){
     
     const[random, setRandom]=useState();
-    var numMax = 10000;
+    var numMax = 1000;
     var numRandom = Math.floor((Math.random() * numMax) + 1);
     const[clicked, setClicked]=useState(false);
     function handleClick(){
@@ -20,19 +15,22 @@ function Random(){
         
     }
     return (
-        <div>
-            <h1>{random}</h1>
+        <div className='randomPage'>
+            <h2>Random Number Generator</h2>
+            <Wrapper>
             {
                 clicked ?  <button className='resetButton'  onClick={()=>{
                     setRandom();
                     setClicked(false);       
                }}>
-                   Reset to pick again:</button> : <button className='randomButton' value='Click me' onClick={()=>{ 
+                   Reset to pick again:</button>:<button className='randomButton' value='Click me' onClick={()=>{ 
                     setRandom(Math.floor(Math.random() * 1000) + 1);
                     setClicked(true);
                 }}>Pick a random number:</button>
             }
             {}
+            <div className='randomOutput'>{random}</div>
+            </Wrapper>
         </div>
     );
 
@@ -49,6 +47,3 @@ function click(){
 
 
 export default Random;
-
-
-  
