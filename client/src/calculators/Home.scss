@@ -104,7 +104,7 @@ p {
 
     .notecard {
         width: 18%;
-        height: 15%;
+        height: 25vh;
         border: 1px solid black;
         display: inline-block;
         margin: 20px;
@@ -113,8 +113,9 @@ p {
         background-image: url('https://i.pinimg.com/474x/d3/63/51/d363516deffcfb67d564c03dea9e0d49.jpg');
         align-items: center;
         @media (min-width: 376px), (max-width: 768px) {
-            width: 24%;
+            width: 23.5%;
             margin: 5px;
+            height: 15vh;
         }
         @media (max-width: 375px) {
             width: 80%;

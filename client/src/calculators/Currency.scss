@@ -1,34 +1,32 @@
-.card {
-    margin: auto;
-    justify-content: center;
-    align-items: center;
-    max-width: 20vw;
-    text-align: center;
+.currencyPage {
+    border : {
+        width: 20px;
+        style: solid;
+        color: rgb(144, 231, 144);
+    }
 }
 
 h1 {
     margin: 0;
-    margin-bottom: .5rem;
     color: black;
     text-align: center;
 }
 
-
-
-.input {
-    border: 1px solid black;
-    border-radius: .3em;
-    padding: .25rem;
-    width: 10em;
-    margin: 0;
-    display: flex;
-    text-align: center;
+#amount {
+   border : {
+        color : rgb(113, 226, 113);
+        radius: 10px;
+        width: 10px;
+   }
+   width: auto;
+   padding: 10px;
+   
 
 }
 
-select {
-    width: 10em;
-    
+#select {
+    width: auto;
+    font-size: x-large;
 }
 
 

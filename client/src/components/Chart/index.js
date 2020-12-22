@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
 import { Line, Bar, Pie } from 'react-chartjs-2';
+import './index.scss';
 
 export function LineChart(props) {
   useEffect(() => {},[props]);
 
   return (
-      <div>
+      <div className='lineChart'>
         <Line
           data={props.chartData}
           options={{

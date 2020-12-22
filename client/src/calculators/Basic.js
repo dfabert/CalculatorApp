@@ -192,8 +192,7 @@ function Basic() {
   };
   
   return ( 
-    <div className='basicPage'> 
-      <title>Basic Calculator</title> 
+    <div className='basicPage'>  
     <Wrapper>
     <div className='calculatorContainer'>
       <div className='calculator-screen'>{display === '' ? num1 : display  } </div>

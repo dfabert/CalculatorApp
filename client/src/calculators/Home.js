@@ -41,6 +41,10 @@ function Home() {
                         <span className="word">Currency</span>
                         <div className="definition">A currency converter for international travel and making purchases abroad.</div>
                 </div>
+                <div className="notecard">
+                        <span className="word">Random</span>
+                        <div className="definition">An efficient random number generator to generate a number between 1 and 1000.</div>
+                </div>
             </div>
               <div id="SignUp">
             <h1 className="button">Sign-up Now</h1>

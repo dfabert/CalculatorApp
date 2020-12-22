@@ -41,8 +41,7 @@ function App() {
           <Route exact path = '/login' component={Login}/>
           <Route exact path = '/logout' component={Logout}/>
           <Route exact path = '/basic' component={Basic} />
-          <Route exact path = '/Financial/Savings' component={Savings} />
-          <Route exact path = '/Financial/Budget' component={Budget} />
+          <Route exact path = '/Savings' component={Savings} />
           <Route exact path = '/Currency' component={Currency} />
           <Route exact path = "/signup" component={() => <Signup changeID={changeID} />} />
           <Route exact path = '/graph' component={Graph}/>

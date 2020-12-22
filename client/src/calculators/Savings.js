@@ -4,6 +4,7 @@ import { Input, FormBtn } from "../components/Form";
 import Results from '../results/VerticalResults';
 import API from "../utils/API";
 import { LineChart } from '../components/Chart';
+import Wrapper from '../components/Wrapper';
 
 
 function Savings() {
@@ -86,35 +87,42 @@ function Savings() {
   };
 
   return (
-    <div>
-      Savings Calculator
-      <form>
-        Principal:  
-        <Input style={{width: '150px'}}
-        onChange={handlePrincipalChange}
-        name="principal"
-        value={p}
-        />
-        APY:  
-        <Input style={{width: '150px'}}
-        onChange={handleRateChange}
-        name="rate"
-        value={r}
-        />
-        Years:
-        <Input style={{width: '150px'}}
-        onChange={handleTimeChange}
-        name="years"
-        value={t}
-        />
-        <FormBtn onClick={handleFormSubmit}>
-          Calculate!
-        </FormBtn>
-      </form>
-      <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
-      <div>{total === 0 ? null : "$" + total}</div>
-      <LineChart chartData={chartData} />
-      <Results doupdate={updateFlag} />
+    <div className='savingsPage'>
+      <h2>Savings Calculator</h2>
+      <div className='savingsContainer'>
+      <Wrapper>
+        <form className='savingsForm'>
+          Principal:  
+          <Input style={{width: '150px'}}
+          onChange={handlePrincipalChange}
+          name="principal"
+          value={p}
+          />
+          APY:  
+          <Input style={{width: '150px'}}
+          onChange={handleRateChange}
+          name="rate"
+          value={r}
+          />
+          Years:
+          <Input style={{width: '150px'}}
+          onChange={handleTimeChange}
+          name="years"
+          value={t}
+          />
+          <FormBtn onClick={handleFormSubmit}>
+            Calculate!
+          </FormBtn>
+        </form>
+        <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
+        <div>{total === 0 ? null : "$" + total}</div> 
+      </Wrapper>
+        <aside className='sidebar'>
+          <Results doupdate={updateFlag} />
+        </aside>
+        </div>
+      <LineChart className='lineChart' chartData={chartData} />
+      
     </div>
   );
 }
