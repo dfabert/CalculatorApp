@@ -43,7 +43,8 @@ function SignupForm({ changeID, history }) {
                     <br></br>
                     <input type="submit" value="Submit" />
                 </form>
-            </div>);
+            </div>
+        );
     
 };
 
