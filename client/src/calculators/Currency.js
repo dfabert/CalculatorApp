@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './Currency.scss';
 import CurrencySelect from './CurrencySelect';
 import Wrapper from '../components/Wrapper';
+import convert from '../img/convert.png';
 
 const BASE_URL = 'https://api.exchangeratesapi.io/latest'
 
@@ -57,8 +58,8 @@ function Currency() {
 
   return (
     <div className='currencyPage'>
+        <h1>Currency Converter</h1>
         <Wrapper>
-        <h1>Convert</h1>
         <CurrencySelect 
             currencyOptions={currencyOptions}
             selectedCurrency={startCurrency}
@@ -66,7 +67,9 @@ function Currency() {
             onChangeAmount={handleStartAmountChange}
             amount={startAmount}
         />
-        <div className='equals'>=</div>
+
+        <a><img src={ convert } className="icon-convert" alt="Convert Icon" /></a>
+
         <CurrencySelect 
             currencyOptions={currencyOptions}
             selectedCurrency={resultCurrency}

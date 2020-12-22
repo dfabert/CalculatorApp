@@ -11,7 +11,7 @@ function NavTabs() {
 
 
 
-<Navbar bg="light">
+<Navbar bg="light" expand='lg'>
     <Navbar.Brand as={Link} to="/"><i class="fas fa-infinity"></i>OmniCalculator</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

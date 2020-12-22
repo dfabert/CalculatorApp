@@ -24,9 +24,9 @@ function Results(props) {
 
     return (
         <div>
-            <h3>{id === 'default' ? 'Recent calculations by all users:' : "Your recent calculations:  " }</h3>
+            <h3>{id === 'default' ? 'All Recent Calculations:' : "Your Recent Calculations:  " }</h3>
                 {display.length ? (
-                    <List>
+                    <List className='resultList'>
                         {display.map(calculation => (
                             <ListItem>
                                 <div>{calculation.equation}</div>

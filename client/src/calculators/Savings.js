@@ -40,7 +40,10 @@ function Savings() {
       datasets:[
         {
           label:'savings at ' + r + '%',
-          data: savingsArray
+          data: savingsArray,
+          borderColor: "#b8e76c",
+          borderWidth: 3,
+          borderStyle: "solid",
         }
       ]
     }
@@ -88,24 +91,24 @@ function Savings() {
 
   return (
     <div className='savingsPage'>
-      <h2>Savings Calculator</h2>
+      <h2>Financial Calculator</h2>
       <div className='savingsContainer'>
       <Wrapper>
         <form className='savingsForm'>
           Principal:  
-          <Input style={{width: '150px'}}
+          <Input
           onChange={handlePrincipalChange}
           name="principal"
           value={p}
           />
           APY:  
-          <Input style={{width: '150px'}}
+          <Input
           onChange={handleRateChange}
           name="rate"
           value={r}
           />
           Years:
-          <Input style={{width: '150px'}}
+          <Input
           onChange={handleTimeChange}
           name="years"
           value={t}
@@ -113,9 +116,11 @@ function Savings() {
           <FormBtn onClick={handleFormSubmit}>
             Calculate!
           </FormBtn>
+          <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
+          <div>{total === 0 ? null : "$" + total}</div> 
         </form>
-        <div>{total === 0 ? null : 'Your savings at the end of ' + t + '  years'}</div>
-        <div>{total === 0 ? null : "$" + total}</div> 
+        
+        
       </Wrapper>
         <aside className='sidebar'>
           <Results doupdate={updateFlag} />

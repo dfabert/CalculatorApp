@@ -48,20 +48,13 @@ function Login(props) {
     );
   } else {
     return (
-      <div>
-        <h1>Login</h1>
+      <div className='loginPage'>    
         <form onSubmit={submit}>
-          <div>
-            <label>Username: </label>
-            <input type="text" name="username" pattern=".{2,16}" required onChange={updateUsername} />
-          </div>
-          <div>
-            <label>Password: </label>
-            <input type="password" name="password" required onChange={updatePassword} />
-          </div>
-          <div>
-            <input type="submit" value="Log in" />
-          </div>
+          <header>Login</header>
+            <input className='userInput' type="text" name="username" placeholder='OmniUsername' pattern=".{2,16}" required onChange={updateUsername} />       
+            <input className='passwordInput' type="password" name="password" placeholder='Password' required onChange={updatePassword} />     
+            <br></br>
+            <input className='submit' type="submit" value="Log in" />
         </form>
       </div>
     );
