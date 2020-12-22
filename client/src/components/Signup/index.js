@@ -23,9 +23,10 @@ function SignupForm({ changeID, history }) {
             console.log(data);
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', data.user);
+            window.location.href = '/';
         }).catch(error => {
             console.log(`Signup server error: ${error}`);
-            history.push('/signup');
+            window.location.href = '/signup';
         });
     };
 
