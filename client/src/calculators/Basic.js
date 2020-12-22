@@ -3,6 +3,8 @@ import Results from '../results/VerticalResults';
 import Button from 'react-bootstrap/Button';
 import './Basic.scss';
 import API from "../utils/API";
+import UserContext from '../utils/UserContext';
+import Wrapper from '../components/Wrapper';
 
 function Basic() {
   const buttonChars = ['1','2','3','+','4','5','6','-','7','8','9','x','.','0','=',"/"];
@@ -187,8 +189,8 @@ function Basic() {
   };
   
   return ( 
-    <div className='basicPage'> 
-      <title>Basic Calculator</title> 
+    <div className='basicPage'>  
+    <Wrapper>
     <div className='calculatorContainer'>
       <div className='calculator-screen'>{display === '' ? num1 : display  } </div>
       <div className='calculatorInputs'>
@@ -200,6 +202,7 @@ function Basic() {
          <Button key = 'clear' variant="secondary" onClick={() => enterChar('clear')}>C</Button>
          </div>
     </div>
+    </Wrapper>
       <aside className='sidebar'>
         <Results doupdate={updateFlag} />
       </aside>

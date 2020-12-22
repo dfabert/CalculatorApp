@@ -13,8 +13,8 @@ function CurrencySelect(props) {
     return (
         <>
             <div className='card'>
-                <input type='number' className='input' value={amount} onChange={onChangeAmount} />
-                <select value={selectedCurrency} onChange={onChangeCurrency}>
+                <input id='amount' type='number' className='input' value={amount} onChange={onChangeAmount} />
+                <select id='select' value={selectedCurrency} onChange={onChangeCurrency}>
                     {currencyOptions.map(option => (
                         <option key={option} value={option}>{option}</option>
                     ))}

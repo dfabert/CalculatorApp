@@ -1,0 +1,33 @@
+.savingsPage {
+    text-align: center;
+    background-image: url('/Savings.jpg');
+    display: flex;
+    flex-direction: column;
+}
+.savingsContainer {
+    display: flex;
+}
+
+.wrapper {
+    order: 0;
+    @media (max-width: 375px) {
+        order: 0;
+    }
+    margin: auto;
+    margin-right: 2%;
+}
+
+.sidebar { 
+    order: 0;  
+    padding: 2%;
+    margin-right: auto;
+    margin-left: 2%;
+    color: white;
+    @media (max-width: 375px) {
+        order: 1;
+    }
+}
+
+.lineChart {
+    order: 2;
+}
