@@ -28,9 +28,10 @@ function Login(props) {
       console.log(data);
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', data.user);
+      window.location.href = '/';
       setLoggedIn(true);
     }).catch( (err) => {
-      console.error(err)
+      console.error(err);
     });
   };
 
