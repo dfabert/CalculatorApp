@@ -165,9 +165,44 @@ p {
                 }
                 @media (max-width: 375px) {
                     font-size: medium;
-                }
-                      
+                }                 
         }
     }
+
+.link {
+     color: black;
+}
+.link:hover {
+         color: rgb(88, 88, 88);
+}
+
+.basicLink {
+    color: rgb(143, 236, 82);
+}
+.basicLink:hover {
+        color: white;
+}
+
+.savingsLink {
+    color: rgb(143, 236, 82);
+}
+.savingsLink:hover {
+        color: white;
+}
+
+.currencyLink {
+    color: rgb(143, 236, 82);
+}
+.currencyLink:hover {
+        color: white;
+}
+
+.randomLink {
+    color: rgb(143, 236, 82);
+}
+.randomLink:hover {
+        color: white;
+}
+
 
 
