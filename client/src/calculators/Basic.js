@@ -3,7 +3,6 @@ import Results from '../results/VerticalResults';
 import Button from 'react-bootstrap/Button';
 import './Basic.scss';
 import API from "../utils/API";
-import UserContext from '../utils/UserContext';
 import Wrapper from '../components/Wrapper';
 
 function Basic() {
