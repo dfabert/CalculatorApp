@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState } from "react";
 import Results from '../results/VerticalResults';
 import Button from 'react-bootstrap/Button';
 import './Basic.scss';
@@ -7,9 +7,6 @@ import UserContext from '../utils/UserContext';
 import Wrapper from '../components/Wrapper';
 
 function Basic() {
-
-
-
   const buttonChars = ['1','2','3','+','4','5','6','-','7','8','9','x','.','0','=',"/"];
   const [display, setDisplay] = useState('');
   const [num1, setNum1] = useState(0);
@@ -17,26 +14,26 @@ function Basic() {
   const [equalsOn, setEqualsOn] = useState([false, null, '']);  //was equals last oppr?
   const [updateFlag, setUpdateFlag] = useState(false);
   const [equationString, setEquationString] = useState('');
-
-
-  const { id } = useContext(UserContext);
+  const id = localStorage.getItem('user');
 
   useEffect(() => {
-    saveThisCalculation();
+    saveCalculation()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[num1]);
 
-
-  const saveThisCalculation = () => {;
+  function saveCalculation() {
     if (equationString !== ''){     
       API.saveCalculation({
         equation:  equationString,
         result:  num1,
-        calculator:  'Basic'
+        calculator:  'Basic',
+        userId: id
       }).then(() => {
           setUpdateFlag(!updateFlag);
       }).catch(err => console.log(err));
     }
   }
+
 
   const enterChar = char => {
     //addition

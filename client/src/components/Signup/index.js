@@ -19,11 +19,11 @@ function SignupForm({ changeID, history }) {
                 username,
                 password
             })
-        }).then((response) => response.json()).then(response => {
-            changeID(response.user._id).then(() =>  history.push('/'));
-            localStorage.setItem('token', response.token);
-        })
-        .catch(error => {
+        }).then(data => {
+            console.log(data);
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('user', data.user);
+        }).catch(error => {
             console.log(`Signup server error: ${error}`);
             history.push('/signup');
         });

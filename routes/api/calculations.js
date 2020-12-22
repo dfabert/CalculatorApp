@@ -5,9 +5,8 @@ router.route('/')
     .get(calculationsController.findAll)
     .post(calculationsController.create);
 
-router
-    .route('/:id')
-    .get(calculationsController.findById)
+router.route('/:userId')
+    .get(calculationsController.findByUserId)
     .put(calculationsController.update)
     .delete(calculationsController.remove);
 
