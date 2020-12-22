@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavTabs from './NavTabs';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -12,6 +12,7 @@ import Currency from './calculators/Currency';
 import Random from './calculators/Random';
 import './app.scss';
 import Graph from "./calculators/Graph";
+import Footer from "./components/Footer";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <Router>
         <div className='app'>
           <NavTabs />
+          <Switch>
           <Route exact path = '/' component={Home} />
           <Route exact path = '/login' component={Login} />
           <Route exact path = '/logout' component={Logout} />
@@ -35,7 +37,10 @@ function App() {
           <Route exact path = "/signup" component={Signup} />
           <Route exact path = '/graph' component={Graph}/>
           <Route exact path = '/Random' component={Random} />
+          </Switch>
+          <Footer />
         </div>
+        
       </Router>
   );
 }

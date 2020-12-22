@@ -1,4 +1,4 @@
- 'use strict';
+'use strict';
 import React, { useState } from "react";
 import './Random.scss';
 import Wrapper from '../components/Wrapper';
@@ -47,6 +47,3 @@ function click(){
 
 
 export default Random;
-
-
-  
