@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Dropdown from '../components/Dropdown';
-import { Input, FormBtn, TextArea } from '../components/Form'
+import { Input, FormBtn } from '../components/Form'
 import { LineChart, BarChart, PieChart } from '../components/Chart'
-import Wrapper from '../components/Wrapper';
 
 const options = ['Bar Graph', 'Line Graph', 'Pie Chart'];
 
@@ -24,23 +23,20 @@ function Graph() {
         }]);
     }
 
-    const updateFieldChange = (id, event) => {
-        console.log(event.target);
-
-        const newInputFields = dataObject.map(i => {
-          if(id === i.id) {
-            i[event.target.name] = event.target.value
-          }
-          return i;
-        })
-        
-        setDataObject(newInputFields);
-      }
-
-      const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(dataObject);
-      };
+    const updateFieldChange = index => e =>{
+        console.log('index: ' + index);
+        console.log('property name: '+ e.target.name);
+        if(e.target.name === 'label'){
+            let newArr = [...dataObject];
+            newArr[index].label = e.target.value; 
+            setDataObject(newArr)
+        }
+        if(e.target.name === 'amount'){
+            let newArr = [...dataObject];
+            newArr[index].amount = e.target.value; 
+            setDataObject(newArr)
+        }
+    }
 
     const createGraph = (event) =>{
         event.preventDefault();
@@ -62,10 +58,34 @@ function Graph() {
         setChartData(newData);
     }
 
+    function DataEntry () {
+        return (
+            <div>
+                <form>
+                    {dataObject.map( (data, index) => {
+                        return (
+                          <form>
+                            <div>
+                            <Input type='text' name='label' value={data.label} onChange={updateFieldChange(index)}/>
+                            </div>
+                            <div>
+                            <Input type='text' name='amount' value={data.amount} onChange={updateFieldChange(index)}/>
+                            </div>
+                          </form>
+                        );
+                    })}
+                  <FormBtn onClick={(event) => createGraph(event)}>Graph</FormBtn>
+                </form>
+            <FormBtn onClick={() => changeDataObjectSize('add')}>Add Data Field</FormBtn>
+            {/* <FormBtn onClick={() => changeSize('remove')}>Remove Data Field</FormBtn> */}
+        </div>
+        )
+    }
 
     function BarGraph() {
         return (
         <div>
+            <DataEntry />
             <BarChart chartData={chartData} />
         </div>
         )
@@ -74,6 +94,7 @@ function Graph() {
     function LineGraph() {
         return (
         <div>
+            <DataEntry />
             <LineChart chartData={chartData} />
         </div>
         )
@@ -82,6 +103,7 @@ function Graph() {
     function PieGraph() {
         return (
         <div>
+            <DataEntry />
             <PieChart chartData={chartData} />
         </div>
         )
@@ -108,28 +130,6 @@ function Graph() {
         items={options}
         onSelectedChange={setSelected} 
       />
-      <div>
-        <form>
-          {dataObject.map( (dataObject, index) => {
-            return (
-              <Wrapper>
-                <form>
-                  <div key={dataObject.id}>
-                    <Input name='label' label='label' variant="filled" value={dataObject.label} onChange={event => updateFieldChange(dataObject.id, event)}/>
-                  </div>
-                  <div>
-                    <Input name='amount' label='amount' variant="filled" value={dataObject.amount} onChange={event => updateFieldChange(dataObject.id, event)}/>
-                  </div>
-                </form>
-              </Wrapper> 
-            );
-          })}
-          <FormBtn onClick={(event) => createGraph(event)}>Graph</FormBtn>
-        </form>
-        <FormBtn onClick={() => changeDataObjectSize('add')}>Add Data Field</FormBtn>
-        {/* <FormBtn onClick={() => changeSize('remove')}>Remove Data Field</FormBtn> */}
-        <FormBtn onClick={handleSubmit}>Log Current data</FormBtn>
-      </div>
       <div>{renderPage()}</div>
     </div>
   );
