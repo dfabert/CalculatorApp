@@ -16,18 +16,21 @@ function NavTabs() {
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className='container-fluid'>
-        <Nav.Link as={Link} to="/">Home</Nav.Link>
         <Nav.Link as={Link} to="/Basic">Basic</Nav.Link> 
-        <Nav.Link as={Link} to="/Savings">Financial</Nav.Link> 
-         <Nav.Link as={Link} to="/Currency">Currency</Nav.Link>
+        <NavDropdown title= "Financial" id="financialDropdown">
+          <Nav.Link as={Link} to="/Savings">Savings</Nav.Link> 
+          <NavDropdown.Divider />
+          <Nav.Link as={Link} to="/Currency">Currency</Nav.Link>
+        </NavDropdown>
+        <Nav.Link as={Link} to="/Graph">Graph</Nav.Link>
         <Nav.Link as={Link} to="/Random">Random</Nav.Link>
         <div className='ml-auto'>
-        <Nav.Link id="signUp" as={Link} to="/Signup">Sign Up</Nav.Link>
-        <NavDropdown title= "My Account" id="accountDropdown">
-          <NavDropdown.Item href="#action/3.1" as={Link} to="/Login">Log In</NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.1" as={Link} to="/Logout">Log Out</NavDropdown.Item>
-        </NavDropdown>
+          <Nav.Link id="signUp" as={Link} to="/Signup">Sign Up</Nav.Link>
+          <NavDropdown title= "My Account" id="accountDropdown">
+            <NavDropdown.Item href="#action/3.1" as={Link} to="/Login">Log In</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="#action/3.1" as={Link} to="/Logout">Log Out</NavDropdown.Item>
+          </NavDropdown>
         </div>
         </Nav>
       </Navbar.Collapse>
