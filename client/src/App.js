@@ -13,6 +13,7 @@ import Random from './calculators/Random';
 import './app.scss';
 import Graph from "./calculators/Graph";
 import Footer from "./components/Footer";
+import Roman from "./calculators/Roman";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           <Route exact path = "/signup" component={Signup} />
           <Route exact path = '/graph' component={Graph}/>
           <Route exact path = '/Random' component={Random} />
+          <Route exact path = '/Roman' component={Roman} />
           </Switch>
           <Footer />
         </div>
