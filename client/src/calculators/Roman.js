@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from '../components/Form';
 import Wrapper from '../components/Wrapper';
 
@@ -6,6 +6,14 @@ function Roman() {
 
     const [num, setNum] = useState(0);
     const [romanNum, setRomanNum] = useState('');
+
+    useEffect(() => {
+        changeToRoman(num);
+    }, [num]);
+
+    useEffect(() => {
+        changeToNum(romanNum);
+    }, [romanNum]);
 
     function handleNumInput(event){
         const { value } = event.target;
@@ -99,8 +107,6 @@ function Roman() {
         
         setNum(total);
     };
-
-
 
     return(
         <div>
