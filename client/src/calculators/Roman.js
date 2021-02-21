@@ -3,9 +3,8 @@ import { Input } from '../components/Form';
 import Wrapper from '../components/Wrapper';
 
 function Roman() {
-
-    const [num, setNum] = useState(0);
-    const [romanNum, setRomanNum] = useState('');
+    const [num, setNum] = useState('');
+    const [romanNum, setRomanNum] = useState('');    
 
     useEffect(() => {
         changeToRoman(num);
@@ -14,18 +13,6 @@ function Roman() {
     useEffect(() => {
         changeToNum(romanNum);
     }, [romanNum]);
-
-    function handleNumInput(event){
-        const { value } = event.target;
-        setNum(value);
-        changeToRoman(num);
-    }
-
-    function handleRomanNumInput(event){
-        const { value } = event.target;
-        setRomanNum(value);
-        changeToNum(romanNum);
-    }
 
     function changeToRoman(num) {
 
@@ -112,9 +99,9 @@ function Roman() {
         <div>
           <Wrapper>
             Enter Number:
-            <Input onChange={handleNumInput} name='num' value={num}/>
+            <Input onChange={e =>setNum(e.target.value)} name='num' value={num}/>
             Enter Roman Numeral:
-            <Input onChange={handleRomanNumInput} name='romanNum' value={romanNum}/>
+            <Input onChange={e =>setRomanNum(e.target.value.toUpperCase())} name='romanNum' value={romanNum}/>
           </Wrapper>
         </div>
     )
