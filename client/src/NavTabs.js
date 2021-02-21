@@ -21,6 +21,7 @@ function NavTabs() {
         <Nav.Link as={Link} to="/Savings">Financial</Nav.Link> 
          <Nav.Link as={Link} to="/Currency">Currency</Nav.Link>
         <Nav.Link as={Link} to="/Random">Random</Nav.Link>
+        <Nav.Link as={Link} to="/Roman">Roman Numerals</Nav.Link>
         <div className='ml-auto'>
         <Nav.Link id="signUp" as={Link} to="/Signup">Sign Up</Nav.Link>
         <NavDropdown title= "My Account" id="accountDropdown">
