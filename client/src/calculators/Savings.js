@@ -8,7 +8,6 @@ import Wrapper from '../components/Wrapper';
 
 function Savings() {
   //For now, compound monthly
-
   const [p, setPrincipal] = useState(0);
   const [r, setRate] = useState(0.0);
   const [t, setTime] = useState(0);
