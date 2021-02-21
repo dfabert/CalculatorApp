@@ -23,6 +23,7 @@ function NavTabs() {
           <Nav.Link as={Link} to="/Currency">Currency</Nav.Link>
         </NavDropdown>
         <Nav.Link as={Link} to="/Graph">Graph</Nav.Link>
+        <Nav.Link as={Link} to="/Roman">Roman Numerals</Nav.Link>
         <Nav.Link as={Link} to="/Random">Random</Nav.Link>
         <div className='ml-auto'>
           <Nav.Link id="signUp" as={Link} to="/Signup">Sign Up</Nav.Link>
