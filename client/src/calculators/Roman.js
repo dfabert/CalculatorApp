@@ -97,24 +97,21 @@ function Roman() {
     
             }
         
-        return total;
+        setNum(total);
     };
 
 
 
     return(
         <div>
+          <Wrapper>
             Enter Number:
             <Input onChange={handleNumInput} name='num' value={num}/>
             Enter Roman Numeral:
             <Input onChange={handleRomanNumInput} name='romanNum' value={romanNum}/>
+          </Wrapper>
         </div>
-
-
-
     )
-
-
 }
 
 export default Roman
